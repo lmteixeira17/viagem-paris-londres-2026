@@ -2117,6 +2117,68 @@ document.querySelector('.day').classList.add('open');
   });
 })();
 
+// Ticket recommendations per day
+(function() {
+  var t = [
+    {ticket:'Navigo Jour',pp:'€8.45',t5:'€42.25',
+     info:'Comprem o <strong>Navigo Découverte</strong> (€5/cartão, precisa foto 3x4) no guichê RER B do CDG. Carreguem <strong>Navigo Jour</strong>. Cobre RER B (CDG&rarr;Paris) + metrô + bus. Avulso seria €13.60/pessoa.',
+     where:'📍 Comprar: guichê ou máquina RER B no aeroporto CDG'},
+    {ticket:'Navigo Jour',pp:'€8.45',t5:'€42.25',
+     info:'Carreguem Jour no Découverte. Cobre: <strong>M9 + M1 + RER C Versailles ida/volta + M9 noite (cruzeiro)</strong>. Ilimitado todas as zonas. Avulso seria ~€13.40/pessoa.',
+     where:'📍 Comprar: máquinas metrô Porte de Montreuil (de manhã cedo)'},
+    {ticket:'Navigo Jour',pp:'€8.45',t5:'€42.25',
+     info:'Último dia da Semana 1. Cobre: <strong>M9 + M4 + M1 + M9 volta</strong>. Percurso linear com muita caminhada (2-4 viagens metrô). Jour garante tranquilidade se precisarem de viagens extras.',
+     where:'📍 Comprar: máquinas metrô Porte de Montreuil'},
+    {ticket:'Navigo Semaine ★',pp:'€30.75 (semana!)',t5:'€153.75',
+     info:'🌟 <strong>PRIMEIRO DIA DA SEMANA 2!</strong> Carreguem <strong>Navigo Semaine</strong> no Découverte. Válido <strong>Seg 13 &rarr; Sáb 18</strong>. Cobre TUDO: metrô + RER + bus + tram, todas as zonas. Inclui Disney (RER A) na sexta! <strong>Não comprem mais nada até sábado.</strong>',
+     where:'📍 Carregar: máquinas metrô (pode carregar domingo à noite ou segunda de manhã)'},
+    {ticket:'Navigo Semaine',pp:'já carregado',t5:'✅ incluso',
+     info:'Incluso no passe semanal. Apenas toquem o Découverte no leitor. Cobre: M9 + M12 + M8 + M1 + tudo que precisarem.',
+     where:''},
+    {ticket:'Navigo Semaine + TGV à parte',pp:'metrô incluso',t5:'✅ metrô incluso',
+     info:'Metrô até Gare de Lyon: <strong>incluso no Navigo Semaine</strong> (M9 + M1, ~15 min). O <strong>TGV para Annecy é SEPARADO</strong> &mdash; bilhete SNCF, não coberto pelo Navigo.',
+     where:''},
+    {ticket:'Navigo Semaine + TGV à parte',pp:'metrô incluso',t5:'✅ metrô incluso',
+     info:'Metrô Gare de Lyon &rarr; hotel &rarr; Catacumbas &rarr; Canal St-Martin &rarr; hotel: tudo <strong>incluso no Navigo</strong>. Só o TGV Annecy&rarr;Paris é separado.',
+     where:''},
+    {ticket:'Navigo Semaine',pp:'já carregado',t5:'✅ incluso',
+     info:'🎉 <strong>RER A até Disney: INCLUSO no Navigo Semaine!</strong> (zona 5 coberta). Avulso seria ~€10/pessoa ida/volta. Economia de €50 para o grupo!',
+     where:''},
+    {ticket:'Navigo Semaine (último dia!) &rarr; Contactless em Londres',pp:'Paris: incluso · Londres: ~£2.80',t5:'Paris: ✅ · Londres: ~£14',
+     info:'Metrô até Gare du Nord: <strong>incluso (último dia do Navigo!)</strong>. Em Londres: usem <strong>Contactless (Visa/Mastercard)</strong> &mdash; encostem o cartão no leitor amarelo. Cap diário £8.10.',
+     where:'📍 Londres: leitores amarelos nas catracas do Tube'},
+    {ticket:'Contactless (Visa/Mastercard)',pp:'cap £8.10/dia',t5:'&le; £40.50',
+     info:'Encostem o <strong>mesmo cartão</strong> no leitor amarelo a cada viagem. District line + Piccadilly line. Cap diário = máximo £8.10, não importa quantas viagens façam.',
+     where:'📍 Cada pessoa usa o MESMO cartão em todas as viagens (para o cap funcionar)'},
+    {ticket:'Contactless',pp:'cap £8.10/dia',t5:'&le; £40.50',
+     info:'District line direto (Earl\'s Court &rarr; Tower Hill, ~20 min). Dia com muita caminhada pela margem do Tâmisa &mdash; poucas viagens de metrô, mas o cap protege.',
+     where:''},
+    {ticket:'Contactless',pp:'cap £8.10/dia',t5:'&le; £40.50',
+     info:'Piccadilly line (Earl\'s Court &rarr; Holborn &rarr; Leicester Square). Dia 100% grátis em atrações &mdash; transporte é o único custo!',
+     where:''},
+    {ticket:'Contactless',pp:'cap £8.10/dia',t5:'&le; £40.50',
+     info:'District + Central + DLR (se forem a Greenwich). Tudo coberto pelo cap. Mesmo com DLR, não pagam mais que £8.10/dia.',
+     where:''},
+    {ticket:'Contactless',pp:'~£5.60',t5:'~£28',
+     info:'Piccadilly line direto Earl\'s Court &rarr; Heathrow (~45 min). Abaixo do cap diário. <strong>Devolvam Oyster Cards (se compraram) nas máquinas para receber £7/cartão de volta!</strong>',
+     where:'📍 Confiram o terminal no letreiro antes de embarcar (T2/3, T4 ou T5)'}
+  ];
+  var days = document.querySelectorAll('#sec-roteiro .day');
+  t.forEach(function(tk, i) {
+    if (!days[i] || !tk) return;
+    var body = days[i].querySelector('.day-body');
+    if (!body) return;
+    var box = document.createElement('div');
+    box.className = 'tip';
+    box.style.cssText = 'background:#EBF5FB; border-left-color:#2E75B6; margin-bottom:14px;';
+    var h = '<strong>🎫 ' + tk.ticket + '</strong> — ' + tk.pp + '/pessoa · 5 pax = ' + tk.t5;
+    h += '<br><span style="font-size:.84rem;color:#555;">' + tk.info + '</span>';
+    if (tk.where) h += '<br><span style="font-size:.82rem;color:#7F8C8D;">' + tk.where + '</span>';
+    box.innerHTML = h;
+    body.insertBefore(box, body.firstChild);
+  });
+})();
+
 // Print
 function printGuide() { window.print(); }
 
