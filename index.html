@@ -2330,6 +2330,28 @@ document.querySelector('.day').classList.add('open');
   });
 })();
 
+// Ticket labels on metro routes
+(function() {
+  var jour = ' <span style="background:#2E75B6;color:#fff;padding:1px 8px;border-radius:10px;font-size:.7rem;font-weight:600;margin-left:4px;">Navigo Jour</span>';
+  var sem = ' <span style="background:#27AE60;color:#fff;padding:1px 8px;border-radius:10px;font-size:.7rem;font-weight:600;margin-left:4px;">Navigo Semaine</span>';
+  var ctls = ' <span style="background:#E74C3C;color:#fff;padding:1px 8px;border-radius:10px;font-size:.7rem;font-weight:600;margin-left:4px;">Contactless</span>';
+  var days = document.querySelectorAll('#sec-roteiro .day');
+  days.forEach(function(day, i) {
+    var label = '';
+    if (i <= 2) label = jour;
+    else if (i <= 7) label = sem;
+    else if (i >= 9) label = ctls;
+    if (label) {
+      day.querySelectorAll('.metro-box .route').forEach(function(r) { r.innerHTML += label; });
+    }
+  });
+  // Day 8 (Eurostar): first route = Navigo Semaine (Paris), rest = Contactless (London)
+  if (days[8]) {
+    var routes = days[8].querySelectorAll('.metro-box .route');
+    routes.forEach(function(r, j) { r.innerHTML += (j === 0 ? sem : ctls); });
+  }
+})();
+
 // Print
 function printGuide() { window.print(); }
 
