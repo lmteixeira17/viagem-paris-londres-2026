@@ -13,7 +13,8 @@
   --bg: #F5F7FA; --card: #FFFFFF; --text: #2C3E50; --text-light: #666;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; padding-bottom: env(safe-area-inset-bottom, 0); -webkit-font-smoothing: antialiased; }
 
 /* NAV */
 .nav { background: var(--blue); color: white; padding: 12px 20px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,.2); }
@@ -126,13 +127,131 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 .ref-table td { padding: 10px 12px; border-bottom: 1px solid var(--gray-border); }
 .ref-table tr:nth-child(even) { background: var(--gray-light); }
 
-/* RESPONSIVE */
+/* RESPONSIVE — Mobile-first for trip use */
 @media (max-width: 600px) {
-  .hero h2 { font-size: 1.5rem; }
-  .nav h1 { font-size: .95rem; }
-  .nav-tabs button { padding: 5px 10px; font-size: .75rem; }
-  .info-grid { grid-template-columns: 1fr; }
-  .day-header .title { font-size: .9rem; }
+  /* NAV: tabs scroll horizontally, no wrap */
+  .nav { padding: 10px 12px; }
+  .nav h1 { font-size: .9rem; white-space: nowrap; }
+  .nav-inner { gap: 6px; }
+  .nav-tabs { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; gap: 5px; scrollbar-width: none; }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  .nav-tabs button { padding: 7px 13px; font-size: .78rem; white-space: nowrap; flex-shrink: 0; min-height: 36px; }
+
+  /* HERO: compact */
+  .hero { padding: 22px 14px 18px; }
+  .hero h2 { font-size: 1.35rem; }
+  .hero .sub { font-size: .9rem; margin-bottom: 10px; }
+  .hero .travelers span { font-size: .78rem; padding: 4px 10px; }
+  .countdown { font-size: .92rem; padding: 5px 14px; margin-bottom: 10px; }
+
+  /* CONTAINER */
+  .container { padding: 0 8px 40px; }
+
+  /* INFO CARDS */
+  .info-grid { grid-template-columns: 1fr; gap: 8px; margin: 12px 0; }
+  .info-card { padding: 12px; }
+  .info-card h4 { font-size: .86rem; }
+  .info-card p { font-size: .82rem; word-break: break-word; }
+
+  /* DAYS */
+  .day { margin: 10px 0; border-radius: 12px; }
+  .day-header { padding: 12px; min-height: 56px; }
+  .day-header .left { gap: 10px; flex: 1; min-width: 0; }
+  .day-header .date-badge { padding: 5px 8px; font-size: .78rem; min-width: 48px; flex-shrink: 0; }
+  .day-header .title { font-size: .86rem; line-height: 1.3; word-break: break-word; }
+  .day-header .city-tag { font-size: .68rem; padding: 2px 7px; }
+  .day-header .badge { font-size: .65rem; padding: 1px 6px; }
+  .day-header .arrow { font-size: 1rem; flex-shrink: 0; margin-left: 4px; }
+  .day-body { padding: 0 10px 12px; }
+
+  /* TICKET PER DAY (::before boxes) */
+  .day[data-ticket-jour] .day-body::before,
+  .day[data-ticket-semaine] .day-body::before,
+  .day[data-ticket-contactless] .day-body::before { font-size: .8rem; padding: 8px 10px; line-height: 1.5; }
+
+  /* TIMELINE */
+  .timeline { padding-left: 18px; }
+  .timeline::before { left: 6px; }
+  .tl-item { padding-left: 12px; margin-bottom: 12px; }
+  .tl-item::before { left: -16px; width: 8px; height: 8px; }
+  .tl-time { font-size: .76rem; }
+  .tl-activity { font-size: .86rem; line-height: 1.3; }
+  .tl-detail { font-size: .78rem; line-height: 1.45; word-break: break-word; }
+  .tl-detail a { word-break: break-all; }
+
+  /* METRO BOX */
+  .metro-box { padding: 10px; font-size: .8rem; margin: 6px 0 4px; }
+  .metro-box .route { font-size: .8rem; line-height: 1.4; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; }
+  .metro-box .steps { font-size: .78rem; line-height: 1.6; }
+  .metro-line { font-size: .68rem; padding: 1px 6px; }
+
+  /* TIP BOXES */
+  .tip { padding: 8px 10px; font-size: .8rem; margin: 8px 0; line-height: 1.5; word-break: break-word; }
+
+  /* STATUS BADGES */
+  .badge { font-size: .68rem; padding: 2px 7px; }
+
+  /* CHECKLIST: bigger touch targets */
+  .checklist li { padding: 14px 10px; gap: 12px; font-size: .84rem; min-height: 48px; }
+  .checklist .check { width: 30px; height: 30px; border-radius: 6px; flex-shrink: 0; }
+  .checklist .check.done::after { font-size: .9rem; }
+  .checklist .item-link { font-size: .78rem; }
+
+  /* TABLES: scroll on mobile */
+  .ref-table { font-size: .76rem; }
+  .ref-table th { padding: 8px 8px; font-size: .74rem; }
+  .ref-table td { padding: 8px 8px; word-break: break-word; }
+
+  /* SEARCH */
+  .search-bar { margin: 8px auto 0; padding: 0 8px; }
+  .search-bar input { padding: 11px 14px; font-size: .88rem; border-radius: 20px; }
+
+  /* ACTION BAR */
+  .action-bar { padding: 0 8px; margin: 6px auto 0; }
+  .action-bar button { padding: 8px 14px; font-size: .8rem; min-height: 40px; }
+
+  /* PHRASES */
+  .phrase-grid { grid-template-columns: 1fr; gap: 6px; }
+  .phrase-item { padding: 8px 10px; font-size: .8rem; }
+
+  /* TRANSPORT INFO */
+  .transport-info { padding: 12px; }
+  .transport-info ul { font-size: .82rem; padding-left: 16px; }
+  .transport-info li { margin-bottom: 6px; }
+
+  /* PDF/TICKET LINKS */
+  .tl-detail a[href*="tickets/"] { display: inline-block; margin-top: 6px; padding: 6px 12px; background: var(--green-bg); border-radius: 8px; font-size: .78rem; }
+
+  /* MAPS LINK */
+  .maps-link { font-size: .78rem; }
+
+  /* GENERAL MOBILE */
+  h2 { font-size: 1.15rem !important; }
+  h3 { font-size: 1rem !important; }
+  h4 { font-size: .88rem !important; }
+}
+
+/* Extra small phones (iPhone SE, etc.) */
+@media (max-width: 380px) {
+  .nav h1 { font-size: .82rem; }
+  .nav-tabs button { padding: 6px 10px; font-size: .72rem; }
+  .hero h2 { font-size: 1.15rem; }
+  .hero .travelers span { font-size: .72rem; padding: 3px 8px; }
+  .day-header .title { font-size: .8rem; }
+  .day-header .date-badge { padding: 4px 6px; font-size: .72rem; min-width: 42px; }
+  .container { padding: 0 6px 40px; }
+  .day-body { padding: 0 8px 10px; }
+  .metro-box { padding: 8px; }
+  .ref-table { font-size: .7rem; }
+  .ref-table th, .ref-table td { padding: 6px; }
+}
+
+/* Touch improvements */
+@media (hover: none) and (pointer: coarse) {
+  .day-header:hover { background: transparent; }
+  .nav-tabs button, .action-bar button, .checklist .check, .day-header { -webkit-tap-highlight-color: rgba(0,0,0,.05); }
+  .day-header:active { background: var(--gray-light); }
+  .nav-tabs button:active { background: white; color: var(--blue); }
 }
 
 /* PRINT */
