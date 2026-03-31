@@ -147,6 +147,31 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 .search-bar { max-width: 900px; margin: 12px auto 0; padding: 0 16px; }
 .search-bar input { width: 100%; padding: 10px 16px; border: 1px solid var(--gray-border); border-radius: 24px; font-size: .9rem; outline: none; }
 .search-bar input:focus { border-color: var(--blue-mid); box-shadow: 0 0 0 3px rgba(46,117,182,.15); }
+
+/* COUNTDOWN */
+.countdown { font-size: 1.1rem; font-weight: 700; background: rgba(255,255,255,.2); display: inline-block; padding: 6px 20px; border-radius: 20px; margin-bottom: 14px; letter-spacing: .5px; }
+
+/* ACTION BAR */
+.action-bar { max-width: 900px; margin: 8px auto 0; padding: 0 16px; display: flex; gap: 8px; justify-content: flex-end; }
+.action-bar button { background: var(--card); border: 1px solid var(--gray-border); padding: 6px 14px; border-radius: 20px; cursor: pointer; font-size: .82rem; color: var(--text); transition: .2s; }
+.action-bar button:hover { background: var(--blue); color: white; border-color: var(--blue); }
+
+/* MAPS LINK */
+.maps-link { text-decoration: none; font-size: .85rem; margin-left: 4px; }
+
+/* PHRASE GRID */
+.phrase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 8px; margin: 8px 0; }
+.phrase-item { background: var(--gray-light); border-radius: 8px; padding: 10px 14px; font-size: .85rem; }
+.phrase-item .foreign { font-weight: 600; color: var(--blue); }
+.phrase-item .meaning { color: var(--text-light); font-size: .82rem; }
+
+/* TRANSPORT INFO */
+.transport-info { background: var(--card); border-radius: 12px; padding: 16px; margin: 12px 0; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+.transport-info h4 { color: var(--blue); margin-bottom: 8px; }
+.transport-info ul { margin: 0; padding-left: 18px; font-size: .88rem; color: var(--text-light); }
+.transport-info li { margin-bottom: 4px; }
+
+@media print { .action-bar, .search-bar, .nav-tabs { display: none; } .section { display: block !important; } .day-body { display: block !important; } }
 </style>
 </head>
 <body>
@@ -167,6 +192,7 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 <div class="hero">
   <h2>Paris & Londres</h2>
   <div class="sub">10 a 23 de Abril de 2026 · 14 dias</div>
+  <div id="countdown" class="countdown"></div>
   <div class="travelers">
     <span>Luis Marcelo</span>
     <span>Janaina</span>
@@ -177,6 +203,10 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 </div>
 
 <div class="search-bar"><input type="text" id="search" placeholder="🔍 Buscar... (ex: Louvre, metrô, Eiffel, ticket)" oninput="filterDays(this.value)"></div>
+<div class="action-bar">
+  <button onclick="printGuide()">🖨️ Imprimir</button>
+  <button class="share-btn" onclick="shareGuide()">📤 Compartilhar</button>
+</div>
 
 <div class="container">
 
@@ -186,16 +216,17 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 <div class="info-grid">
   <div class="info-card">
     <h4>🏨 Hotel Paris (8 noites)</h4>
-    <p><span class="highlight">Novotel Suites Montreuil Vincennes</span><br>Metrô: Porte de Montreuil <span class="metro-line m9">9</span><br>10/04 → 18/04</p>
+    <p><span class="highlight">Novotel Suites Montreuil Vincennes</span> <a href="https://maps.google.com/?q=Novotel+Suites+Paris+Montreuil+Vincennes" target="_blank" class="maps-link">📍Mapa</a><br>Metrô: Porte de Montreuil <span class="metro-line m9">9</span><br>10/04 → 18/04</p>
   </div>
   <div class="info-card">
     <h4>🏔️ Hotel Annecy (1 noite)</h4>
-    <p><span class="highlight">Privilodges Le Royal Annecy</span><br>15/04 → 16/04</p>
+    <p><span class="highlight">Privilodges Le Royal Annecy</span> <a href="https://maps.google.com/?q=Privilodges+Le+Royal+Annecy" target="_blank" class="maps-link">📍Mapa</a><br>15/04 → 16/04</p>
   </div>
   <div class="info-card" style="border-left-color: var(--red);">
     <h4>🏨 Hotel Londres (5 noites)</h4>
-    <p><span class="highlight">Mowbray Court Hotel, Earl's Court</span><br>Metrô: Earl's Court <span class="metro-line district">District</span> <span class="metro-line piccadilly">Piccadilly</span><br>18/04 → 23/04</p>
+    <p><span class="highlight">Mowbray Court Hotel, Earl's Court</span> <a href="https://maps.google.com/?q=Mowbray+Court+Hotel+Penywern+Road+London" target="_blank" class="maps-link">📍Mapa</a><br>Metrô: Earl's Court <span class="metro-line district">District</span> <span class="metro-line piccadilly">Piccadilly</span><br>18/04 → 23/04</p>
   </div>
+</div>
 
 <div class="info-grid">
   <div class="info-card" style="border-left-color: var(--red);">
@@ -428,13 +459,13 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 </div>
 
 <!-- DIA 4: 13/04 -->
-<div class="day" data-search="montmartre sacre coeur opera garnier catacumbas catacombes">
+<div class="day" data-search="montmartre sacre coeur opera garnier marais pompidou beaubourg galeries lafayette">
   <div class="day-header" onclick="toggleDay(this)">
     <div class="left">
       <span class="date-badge">Seg 13</span>
       <div>
-        <div class="title">Montmartre + Ópera Garnier + Catacumbas 💀</div>
-        <span class="city-tag">Paris</span> <span class="badge badge-buy">❌ ×2</span>
+        <div class="title">Montmartre + Ópera + Pompidou + Marais 🎨</div>
+        <span class="city-tag">Paris</span> <span class="badge badge-buy">❌ Ópera</span>
       </div>
     </div>
     <span class="arrow">▼</span>
@@ -476,22 +507,31 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
         <div class="tl-detail">~€14/adulto, Ana ~€10 (youth). Interior deslumbrante — o teto pintado por Chagall é imperdível!<br>
         <a href="https://www.operadeparis.fr" target="_blank">🔗 operadeparis.fr</a></div>
       </div>
-      <div class="tl-item urgent">
-        <div class="tl-time">16:30 → 18:00</div>
-        <div class="tl-activity">Catacumbas de Paris 💀 <span class="badge badge-urgent">❌ COMPRAR URGENTE</span></div>
-        <div class="tl-detail">~€29/adulto (Ana grátis &lt;18). ESGOTA SEMANAS ANTES! Comprem JÁ.<br>
-        <a href="https://www.catacombes.paris.fr" target="_blank">🔗 catacombes.paris.fr</a></div>
+      <div class="tl-item">
+        <div class="tl-time">16:00 → 16:45</div>
+        <div class="tl-activity">Galeries Lafayette (cúpula + terraço) <span class="badge badge-free">GRÁTIS</span></div>
+        <div class="tl-detail">A 2 min da Ópera! Cúpula Art Nouveau espetacular. Terraço com vista panorâmica gratuita. Não precisam comprar nada.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">17:15 → 18:30</div>
+        <div class="tl-activity">Centre Pompidou (exterior + terraço grátis) <span class="badge badge-free">GRÁTIS (terraço)</span></div>
+        <div class="tl-detail">Arquitetura icônica! Vista 360° grátis do terraço. Se quiserem o museu: ~€15/adulto (Ana grátis). Aberto até 21h.<br>
+        ⚠️ Fechado às terças — segunda-feira é perfeito!<br>
+        <a href="https://www.centrepompidou.fr" target="_blank">🔗 centrepompidou.fr</a></div>
         <div class="metro-box">
-          <div class="route">🚇 Ópera → Catacumbas</div>
+          <div class="route">🚇 Ópera → Pompidou</div>
           <div class="steps">
-            <strong>Opéra</strong> → <span class="metro-line m14">14</span> dir. Olympiades → <strong>Châtelet</strong> (~3 min)<br>
-            Baldeação → <span class="metro-line m4">4</span> dir. Mairie de Montrouge → <strong>Denfert-Rochereau</strong> (~12 min)<br>
-            🚶 Entrada das Catacumbas: 1 Avenue du Colonel Henri Rol-Tanguy (saída da estação, 1 min)
+            <strong>Opéra</strong> → <span class="metro-line m3">3</span> dir. Gallieni → <strong>Arts et Métiers</strong> (~8 min)<br>
+            🚶 5 min até Centre Pompidou (Beaubourg)
           </div>
         </div>
-        <div class="tip warning"><strong>⚠️ Catacumbas:</strong> São 130 degraus para descer, 83 para subir. Temperatura lá embaixo: 14°C — levem um casaquinho! Proibido tocar nos ossos.</div>
-        <div class="tip warning"><strong>⚠️ ATENÇÃO: CATACUMBAS FECHAM ÀS SEGUNDAS-FEIRAS!</strong> O dia 13/04 é segunda-feira. Verifiquem o horário atualizado em <a href="https://www.catacombes.paris.fr" target="_blank">catacombes.paris.fr</a>. Se estiver fechado, considerem trocar a visita com outra atração — ou reagendem para outro dia livre.</div>
       </div>
+      <div class="tl-item">
+        <div class="tl-time">18:30 → 20:30</div>
+        <div class="tl-activity">Le Marais — passeio + jantar 🍽️ <span class="badge badge-free">GRÁTIS</span></div>
+        <div class="tl-detail"><strong>Place des Vosges</strong> (praça mais bonita de Paris!), <strong>Rue des Rosiers</strong> (melhor falafel de Paris: L'As du Fallafel ~€8), boutiques vintage, galerias de arte.</div>
+      </div>
+      <div class="tip"><strong>💡 Catacumbas reagendadas!</strong> As Catacumbas fecham às segundas. Movemos para <strong>quinta 16/04</strong> (volta de Annecy). O Marais é o bairro mais charmoso de Paris — aproveitem!</div>
     </div>
   </div>
 </div>
@@ -639,13 +679,13 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 </div>
 
 <!-- DIA 7: 16/04 -->
-<div class="day" data-search="annecy lago trem volta paris canal saint martin">
+<div class="day" data-search="annecy lago trem volta paris canal saint martin catacumbas catacombes">
   <div class="day-header" onclick="toggleDay(this)">
     <div class="left">
       <span class="date-badge annecy">Qui 16</span>
       <div>
-        <div class="title">Annecy (manhã) + Volta para Paris 🚄</div>
-        <span class="city-tag annecy">Annecy → Paris</span> <span class="badge badge-urgent">❌ Trem URGENTE</span>
+        <div class="title">Annecy (manhã) + Volta + Catacumbas 🚄💀</div>
+        <span class="city-tag annecy">Annecy → Paris</span> <span class="badge badge-urgent">❌ Trem</span> <span class="badge badge-urgent">❌ Catacumbas</span>
       </div>
     </div>
     <span class="arrow">▼</span>
@@ -676,15 +716,29 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
         <div class="tl-time">~16:00</div>
         <div class="tl-activity">Chegada Gare de Lyon + hotel</div>
       </div>
-      <div class="tl-item">
-        <div class="tl-time">18:30 → 20:30</div>
-        <div class="tl-activity">Canal Saint-Martin (passeio + jantar) <span class="badge badge-free">GRÁTIS</span></div>
-        <div class="tl-detail">Área charmosa, jovem e hipster. Bridges fotogênicas, restaurantes com terraço ao longo do canal.</div>
+      <div class="tl-item urgent">
+        <div class="tl-time">17:00 → 18:30</div>
+        <div class="tl-activity">Catacumbas de Paris 💀 <span class="badge badge-urgent">❌ COMPRAR</span></div>
+        <div class="tl-detail">~€29/adulto (Ana grátis &lt;18). ESGOTA SEMANAS ANTES! Comprem JÁ. São 130 degraus para descer, 14°C lá embaixo — levem casaco.<br>
+        <a href="https://www.catacombes.paris.fr" target="_blank">🔗 catacombes.paris.fr</a></div>
         <div class="metro-box">
-          <div class="route">🚇 Hotel → Canal Saint-Martin</div>
+          <div class="route">🚇 Hotel → Catacumbas (~20 min)</div>
           <div class="steps">
-            <strong>Porte de Montreuil</strong> → <span class="metro-line m9">9</span> dir. Pont de Sèvres → <strong>République</strong> (~10 min)<br>
-            🚶 5 min até o Canal Saint-Martin (Quai de Jemmapes)
+            <strong>Porte de Montreuil</strong> → <span class="metro-line m9">9</span> dir. Pont de Sèvres → <strong>Nation</strong> (~5 min)<br>
+            Baldeação → <span class="metro-line m6">6</span> dir. Charles de Gaulle-Étoile → <strong>Denfert-Rochereau</strong> (~15 min)<br>
+            🚶 Entrada: 1 Av. du Colonel Henri Rol-Tanguy (1 min da estação)
+          </div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">19:00 → 20:30</div>
+        <div class="tl-activity">Canal Saint-Martin (jantar) 🍽️ <span class="badge badge-free">GRÁTIS</span></div>
+        <div class="tl-detail">Área charmosa e hipster. Restaurantes com terraço ao longo do canal. Perfeito para encerrar o dia!</div>
+        <div class="metro-box">
+          <div class="route">🚇 Catacumbas → Canal Saint-Martin (~15 min)</div>
+          <div class="steps">
+            <strong>Denfert-Rochereau</strong> → <span class="metro-line m4">4</span> dir. Porte de Clignancourt → <strong>Strasbourg-Saint-Denis</strong> (~10 min)<br>
+            🚶 8 min até o Canal Saint-Martin (Quai de Jemmapes)
           </div>
         </div>
       </div>
@@ -1116,7 +1170,7 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
   <li class="priority-high"><div class="check" onclick="this.classList.toggle('done')"></div><div class="item-text"><strong>Torre Eiffel</strong> — 14/04, ~19:30 · ~€17-27/adulto + ~€8-14 youth<br><a class="item-link" href="https://www.toureiffel.paris" target="_blank">🔗 toureiffel.paris</a></div></li>
   <li class="priority-high"><div class="check" onclick="this.classList.toggle('done')"></div><div class="item-text"><strong>Trem Paris → Annecy</strong> — 15/04, manhã · ~€30-80/pessoa<br><a class="item-link" href="https://www.sncf-connect.com" target="_blank">🔗 sncf-connect.com</a></div></li>
   <li class="priority-high"><div class="check" onclick="this.classList.toggle('done')"></div><div class="item-text"><strong>Trem Annecy → Paris</strong> — 16/04, ~12:00 · ~€30-80/pessoa<br><a class="item-link" href="https://www.sncf-connect.com" target="_blank">🔗 sncf-connect.com</a></div></li>
-  <li class="priority-high"><div class="check" onclick="this.classList.toggle('done')"></div><div class="item-text"><strong>Catacumbas de Paris</strong> — 13/04, ~16:30 · ~€29/adulto (Ana grátis)<br><a class="item-link" href="https://www.catacombes.paris.fr" target="_blank">🔗 catacombes.paris.fr</a></div></li>
+  <li class="priority-high"><div class="check" onclick="this.classList.toggle('done')"></div><div class="item-text"><strong>Catacumbas de Paris</strong> — 16/04 (quinta), ~17:00 · ~€29/adulto (Ana grátis)<br><a class="item-link" href="https://www.catacombes.paris.fr" target="_blank">🔗 catacombes.paris.fr</a></div></li>
 </ul>
 </div>
 
@@ -1215,6 +1269,19 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
   </div>
 </div>
 
+<h3 style="margin: 20px 0 10px; color: var(--blue);">💳 Bilhetes de Metrô em Paris</h3>
+<div class="transport-info">
+  <h4>Opção recomendada: Navigo Découverte</h4>
+  <ul>
+    <li><strong>Navigo Découverte</strong> — cartão recarregável para turistas. Custa €5 (cartão) + €30.75/semana. Viagens ILIMITADAS em todas as zonas (1-5), incluindo RER para CDG, Versailles e Disney!</li>
+    <li><strong>Semana 1 (10-12/04):</strong> Passe semanal vale de segunda a domingo. Comprando sexta, usam só 3 dias — ainda assim compensa se usarem RER B (CDG ~€11) + RER C (Versailles ~€4.50) + metrô intenso.</li>
+    <li><strong>Semana 2 (13-18/04):</strong> Passe semanal completo. Cobre metrô + RER A (Disney!) + tudo. Melhor custo-benefício!</li>
+    <li><strong>Onde comprar:</strong> Guichês ou máquinas do metrô. Precisam de <strong>1 foto 3×4 por pessoa</strong> (levem de casa ou usem cabines de foto nas estações, ~€5).</li>
+    <li><strong>Alternativa simples:</strong> Ticket t+ avulso (€2.15/viagem) carregado no cartão Navigo Easy (€2 o cartão). Bom se fizerem poucas viagens por dia.</li>
+  </ul>
+  <div class="tip"><strong>💡 Conta rápida (5 pessoas, 8 dias):</strong> Navigo semanal × 2 semanas × 5 pessoas = ~€332. Tickets avulsos para o mesmo uso = ~€500+. Economizam ~€170 com Navigo!</div>
+</div>
+
 <h3 style="margin: 20px 0 10px; color: var(--red);">Rotas mais usadas de Londres</h3>
 <div style="background: var(--card); border-radius: 12px; padding: 16px; box-shadow: 0 1px 4px rgba(0,0,0,.06);">
   <div class="metro-box">
@@ -1238,6 +1305,22 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
     <div class="steps"><span class="metro-line piccadilly">Piccadilly</span> Earl's Court → Heathrow (direto, sem baldeação! Confirme terminal)</div>
   </div>
 </div>
+
+<h3 style="margin: 20px 0 10px; color: var(--red);">💳 Oyster Card & Contactless em Londres</h3>
+<div class="transport-info">
+  <h4>Opção mais fácil: Contactless (cartão de débito/crédito)</h4>
+  <ul>
+    <li><strong>Contactless Visa/Mastercard:</strong> Funciona igual Oyster! Basta encostar o cartão no leitor amarelo. Mesmos preços, mesmo cap diário. Mais prático — não precisa comprar nada.</li>
+    <li><strong>Oyster Card:</strong> Comprável nas máquinas amarelas do metrô. Depósito de £7 (reembolsável). Carregue crédito e use.</li>
+    <li><strong>Cap diário Zonas 1-2:</strong> ~£8.10/pessoa. Não importa quantas viagens façam, nunca pagam mais que isso por dia.</li>
+    <li><strong>Cap semanal Zonas 1-2:</strong> ~£40.70 (seg-dom). Se contactless, o cap é aplicado automaticamente!</li>
+    <li><strong>Viagem avulsa Zona 1:</strong> ~£2.80 (off-peak ~£2.70)</li>
+    <li><strong>Earl's Court → Heathrow:</strong> ~£5.60/pessoa com Oyster/contactless</li>
+    <li><strong>Ana Flavia (17 anos):</strong> Paga tarifa adulta (child rate é só até 15 anos com Zip Card).</li>
+  </ul>
+  <div class="tip"><strong>💡 Dicas:</strong> Cada pessoa deve usar o MESMO cartão em todas as viagens para o cap funcionar. Devolvam Oyster Cards em Earl's Court antes de ir ao aeroporto para receber os £7 de volta!</div>
+</div>
+
 </div><!-- end sec-transporte -->
 
 <!-- ==================== REFERÊNCIAS ==================== -->
@@ -1296,6 +1379,42 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
   <tr><td>Teatro West End (~5 pessoas)</td><td>~£150-500</td><td style="color: var(--orange);">❌ Comprar</td></tr>
   <tr><td>Churchill War Rooms</td><td>~£108+</td><td style="color: var(--orange);">❌ Comprar</td></tr>
   <tr><td>St Paul's Cathedral</td><td>~£102</td><td style="color: var(--orange);">❌ Comprar</td></tr>
+</table>
+</div>
+
+<h2 style="margin: 30px 0 16px; color: var(--blue); font-size: 1.3rem;">📍 Mapas — Links Rápidos</h2>
+<div style="background: var(--card); border-radius: 12px; padding: 4px; overflow-x: auto; box-shadow: 0 1px 4px rgba(0,0,0,.06);">
+<table class="ref-table">
+  <tr><th>Local</th><th>Cidade</th><th>Mapa</th></tr>
+  <tr><td>Novotel Suites Montreuil Vincennes</td><td>Paris</td><td><a href="https://maps.google.com/?q=Novotel+Suites+Paris+Montreuil+Vincennes" target="_blank">📍 Abrir</a></td></tr>
+  <tr><td>Château de Versailles</td><td>Paris</td><td><a href="https://maps.google.com/?q=Château+de+Versailles" target="_blank">📍 Abrir</a></td></tr>
+  <tr><td>Sainte-Chapelle</td><td>Paris</td><td><a href="https://maps.google.com/?q=Sainte-Chapelle+Paris" target="_blank">📍 Abrir</a></td></tr>
+  <tr><td>Musée du Louvre</td><td>Paris</td><td><a href="https://maps.google.com/?q=Musée+du+Louvre" target="_blank">📍 Abrir</a></td></tr>
+  <tr><td>Musée de l'Orangerie</td><td>Paris</td><td><a href="https://maps.google.com/?q=Musée+de+l'Orangerie+Paris" target="_blank">📍 Abrir</a></td></tr>
+  <tr><td>Arc de Triomphe</td><td>Paris</td><td><a href="https://maps.google.com/?q=Arc+de+Triomphe+Paris" target="_blank">📍 Abrir</a></td></tr>
+  <tr><td>Sacré-Cœur / Montmartre</td><td>Paris</td><td><a href="https://maps.google.com/?q=Sacré-Cœur+Paris" target="_blank">📍 Abrir</a></td></tr>
+  <tr><td>Palais Garnier (Ópera)</td><td>Paris</td><td><a href="https://maps.google.com/?q=Palais+Garnier+Paris" target="_blank">📍 Abrir</a></td></tr>
+  <tr><td>Centre Pompidou</td><td>Paris</td><td><a href="https://maps.google.com/?q=Centre+Pompidou+Paris" target="_blank">📍 Abrir</a></td></tr>
+  <tr><td>Musée d'Orsay</td><td>Paris</td><td><a href="https://maps.google.com/?q=Musée+d'Orsay" target="_blank">📍 Abrir</a></td></tr>
+  <tr><td>Musée Rodin</td><td>Paris</td><td><a href="https://maps.google.com/?q=Musée+Rodin+Paris" target="_blank">📍 Abrir</a></td></tr>
+  <tr><td>Tour Eiffel</td><td>Paris</td><td><a href="https://maps.google.com/?q=Tour+Eiffel" target="_blank">📍 Abrir</a></td></tr>
+  <tr><td>Catacombes de Paris</td><td>Paris</td><td><a href="https://maps.google.com/?q=Catacombes+de+Paris" target="_blank">📍 Abrir</a></td></tr>
+  <tr><td>Gare de Lyon</td><td>Paris</td><td><a href="https://maps.google.com/?q=Gare+de+Lyon+Paris" target="_blank">📍 Abrir</a></td></tr>
+  <tr><td>Gare du Nord (Eurostar)</td><td>Paris</td><td><a href="https://maps.google.com/?q=Gare+du+Nord+Paris" target="_blank">📍 Abrir</a></td></tr>
+  <tr><td>Disneyland Paris</td><td>Paris</td><td><a href="https://maps.google.com/?q=Disneyland+Paris" target="_blank">📍 Abrir</a></td></tr>
+  <tr><td>Privilodges Le Royal</td><td>Annecy</td><td><a href="https://maps.google.com/?q=Privilodges+Le+Royal+Annecy" target="_blank">📍 Abrir</a></td></tr>
+  <tr><td>Lac d'Annecy</td><td>Annecy</td><td><a href="https://maps.google.com/?q=Lac+d'Annecy" target="_blank">📍 Abrir</a></td></tr>
+  <tr><td>Mowbray Court Hotel</td><td>Londres</td><td><a href="https://maps.google.com/?q=Mowbray+Court+Hotel+Penywern+Road+London" target="_blank">📍 Abrir</a></td></tr>
+  <tr><td>Westminster / Big Ben</td><td>Londres</td><td><a href="https://maps.google.com/?q=Big+Ben+London" target="_blank">📍 Abrir</a></td></tr>
+  <tr><td>Tower of London</td><td>Londres</td><td><a href="https://maps.google.com/?q=Tower+of+London" target="_blank">📍 Abrir</a></td></tr>
+  <tr><td>Borough Market</td><td>Londres</td><td><a href="https://maps.google.com/?q=Borough+Market+London" target="_blank">📍 Abrir</a></td></tr>
+  <tr><td>Sky Garden</td><td>Londres</td><td><a href="https://maps.google.com/?q=Sky+Garden+20+Fenchurch+Street+London" target="_blank">📍 Abrir</a></td></tr>
+  <tr><td>British Museum</td><td>Londres</td><td><a href="https://maps.google.com/?q=British+Museum+London" target="_blank">📍 Abrir</a></td></tr>
+  <tr><td>National Gallery</td><td>Londres</td><td><a href="https://maps.google.com/?q=National+Gallery+London" target="_blank">📍 Abrir</a></td></tr>
+  <tr><td>Tate Modern</td><td>Londres</td><td><a href="https://maps.google.com/?q=Tate+Modern+London" target="_blank">📍 Abrir</a></td></tr>
+  <tr><td>St Paul's Cathedral</td><td>Londres</td><td><a href="https://maps.google.com/?q=St+Paul's+Cathedral+London" target="_blank">📍 Abrir</a></td></tr>
+  <tr><td>St Pancras International</td><td>Londres</td><td><a href="https://maps.google.com/?q=St+Pancras+International+London" target="_blank">📍 Abrir</a></td></tr>
+  <tr><td>Heathrow Airport</td><td>Londres</td><td><a href="https://maps.google.com/?q=Heathrow+Airport" target="_blank">📍 Abrir</a></td></tr>
 </table>
 </div>
 
@@ -1428,6 +1547,48 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
   </div>
 </div>
 
+<div class="day">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left"><div class="title">🗣️ Frases Úteis (Francês / Inglês)</div></div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <h4 style="color: var(--blue); margin-bottom: 8px;">🇫🇷 Francês (Paris & Annecy)</h4>
+    <div class="phrase-grid">
+      <div class="phrase-item"><span class="foreign">Bonjour / Bonsoir</span><br><span class="meaning">Bom dia / Boa noite</span></div>
+      <div class="phrase-item"><span class="foreign">Merci / Merci beaucoup</span><br><span class="meaning">Obrigado / Muito obrigado</span></div>
+      <div class="phrase-item"><span class="foreign">S'il vous plaît</span><br><span class="meaning">Por favor</span></div>
+      <div class="phrase-item"><span class="foreign">Excusez-moi</span><br><span class="meaning">Com licença</span></div>
+      <div class="phrase-item"><span class="foreign">Parlez-vous anglais?</span><br><span class="meaning">Vocês falam inglês?</span></div>
+      <div class="phrase-item"><span class="foreign">Où est...?</span><br><span class="meaning">Onde fica...?</span></div>
+      <div class="phrase-item"><span class="foreign">Combien ça coûte?</span><br><span class="meaning">Quanto custa?</span></div>
+      <div class="phrase-item"><span class="foreign">L'addition, s'il vous plaît</span><br><span class="meaning">A conta, por favor</span></div>
+      <div class="phrase-item"><span class="foreign">Je voudrais...</span><br><span class="meaning">Eu gostaria de...</span></div>
+      <div class="phrase-item"><span class="foreign">Une table pour cinq</span><br><span class="meaning">Mesa para cinco</span></div>
+      <div class="phrase-item"><span class="foreign">Un billet, s'il vous plaît</span><br><span class="meaning">Um bilhete, por favor</span></div>
+      <div class="phrase-item"><span class="foreign">C'est gratuit pour les moins de 18 ans?</span><br><span class="meaning">É grátis para menores de 18?</span></div>
+      <div class="phrase-item"><span class="foreign">À quelle heure ça ouvre/ferme?</span><br><span class="meaning">A que horas abre/fecha?</span></div>
+      <div class="phrase-item"><span class="foreign">Entrée / Sortie</span><br><span class="meaning">Entrada / Saída</span></div>
+      <div class="phrase-item"><span class="foreign">Un / Deux / Trois / Quatre / Cinq</span><br><span class="meaning">1 / 2 / 3 / 4 / 5</span></div>
+      <div class="phrase-item"><span class="foreign">Je ne comprends pas</span><br><span class="meaning">Eu não entendo</span></div>
+    </div>
+    <h4 style="color: var(--red); margin: 16px 0 8px;">🇬🇧 Inglês (Londres)</h4>
+    <div class="phrase-grid">
+      <div class="phrase-item"><span class="foreign">Excuse me, where is...?</span><br><span class="meaning">Com licença, onde fica...?</span></div>
+      <div class="phrase-item"><span class="foreign">How much is it?</span><br><span class="meaning">Quanto custa?</span></div>
+      <div class="phrase-item"><span class="foreign">Could I have the bill, please?</span><br><span class="meaning">A conta, por favor?</span></div>
+      <div class="phrase-item"><span class="foreign">Is there a youth discount?</span><br><span class="meaning">Tem desconto para jovem?</span></div>
+      <div class="phrase-item"><span class="foreign">A table for five, please</span><br><span class="meaning">Mesa para cinco, por favor</span></div>
+      <div class="phrase-item"><span class="foreign">One-way / Return ticket</span><br><span class="meaning">Só ida / Ida e volta</span></div>
+      <div class="phrase-item"><span class="foreign">Do you accept cards?</span><br><span class="meaning">Aceitam cartão?</span></div>
+      <div class="phrase-item"><span class="foreign">Which platform for...?</span><br><span class="meaning">Qual plataforma para...?</span></div>
+      <div class="phrase-item"><span class="foreign">Could you take a photo of us?</span><br><span class="meaning">Pode tirar uma foto nossa?</span></div>
+      <div class="phrase-item"><span class="foreign">Where is the nearest Underground?</span><br><span class="meaning">Onde é o metrô mais perto?</span></div>
+    </div>
+    <div class="tip"><strong>💡 Dica:</strong> Em Paris, SEMPRE comecem com "Bonjour!" antes de pedir qualquer coisa — é considerado rude não cumprimentar. Em Londres, "please" e "thank you" são essenciais.</div>
+  </div>
+</div>
+
 </div><!-- end sec-dicas -->
 
 </div><!-- end container -->
@@ -1457,6 +1618,53 @@ function filterDays(query) {
 
 // Open first day by default
 document.querySelector('.day').classList.add('open');
+
+// Countdown
+(function() {
+  var trip = new Date('2026-04-10T00:00:00');
+  var now = new Date();
+  var diff = trip - now;
+  var el = document.getElementById('countdown');
+  if (!el) return;
+  if (diff <= 0) {
+    var end = new Date('2026-04-23T23:59:59');
+    el.textContent = now <= end ? 'Boa viagem! 🎉' : 'Que saudade dessa viagem! 💙';
+  } else {
+    var days = Math.ceil(diff / (1000*60*60*24));
+    el.textContent = days === 1 ? 'Amanhã! ✈️🎉' : '✈️ Faltam ' + days + ' dias!';
+  }
+})();
+
+// Checklist persistence
+(function() {
+  var saved = JSON.parse(localStorage.getItem('trip-checklist-2026') || '{}');
+  document.querySelectorAll('.checklist .check').forEach(function(check, i) {
+    if (saved[i]) check.classList.add('done');
+    check.onclick = function() {
+      this.classList.toggle('done');
+      var state = {};
+      document.querySelectorAll('.checklist .check').forEach(function(c, j) {
+        if (c.classList.contains('done')) state[j] = true;
+      });
+      localStorage.setItem('trip-checklist-2026', JSON.stringify(state));
+    };
+  });
+})();
+
+// Print
+function printGuide() { window.print(); }
+
+// Share
+function shareGuide() {
+  if (navigator.share) {
+    navigator.share({ title: 'Paris & Londres 2026', url: window.location.href });
+  } else {
+    navigator.clipboard.writeText(window.location.href).then(function() {
+      var btn = document.querySelector('.share-btn');
+      if (btn) { btn.textContent = '✅ Link copiado!'; setTimeout(function() { btn.textContent = '📤 Compartilhar'; }, 2000); }
+    });
+  }
+}
 </script>
 
 </body>
