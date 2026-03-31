@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paris & Londres 2026 — Guia Completo</title>
+<style>
+:root {
+  --blue: #1F4E79; --blue-light: #D6E4F0; --blue-mid: #2E75B6;
+  --green: #27AE60; --green-bg: #E8F5E9; --red: #E74C3C; --red-bg: #FDEDEC;
+  --orange: #F39C12; --orange-bg: #FEF9E7; --purple: #8E44AD;
+  --gray: #7F8C8D; --gray-light: #F8F9FA; --gray-border: #E0E0E0;
+  --bg: #F5F7FA; --card: #FFFFFF; --text: #2C3E50; --text-light: #666;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+/* NAV */
+.nav { background: var(--blue); color: white; padding: 12px 20px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,.2); }
+.nav-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+.nav h1 { font-size: 1.15rem; }
+.nav-tabs { display: flex; gap: 4px; flex-wrap: wrap; }
+.nav-tabs button { background: rgba(255,255,255,.15); color: white; border: none; padding: 6px 14px; border-radius: 20px; cursor: pointer; font-size: .82rem; transition: .2s; }
+.nav-tabs button:hover, .nav-tabs button.active { background: white; color: var(--blue); }
+
+/* HERO */
+.hero { background: linear-gradient(135deg, var(--blue) 0%, var(--blue-mid) 100%); color: white; padding: 40px 20px 30px; text-align: center; }
+.hero h2 { font-size: 2rem; margin-bottom: 4px; }
+.hero .sub { font-size: 1.05rem; opacity: .85; margin-bottom: 18px; }
+.hero .travelers { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 16px; }
+.hero .travelers span { background: rgba(255,255,255,.18); padding: 5px 14px; border-radius: 20px; font-size: .88rem; }
+.hero .travelers span.youth { background: var(--orange); color: #fff; }
+
+/* CONTAINER */
+.container { max-width: 900px; margin: 0 auto; padding: 0 16px 60px; }
+
+/* SECTION TABS */
+.section { display: none; }
+.section.active { display: block; }
+
+/* CARDS */
+.info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin: 20px 0; }
+.info-card { background: var(--card); border-radius: 12px; padding: 16px; border-left: 4px solid var(--blue); box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+.info-card h4 { color: var(--blue); margin-bottom: 6px; font-size: .92rem; }
+.info-card p { font-size: .88rem; color: var(--text-light); }
+.info-card .highlight { color: var(--blue); font-weight: 600; }
+
+/* DAY */
+.day { background: var(--card); border-radius: 14px; margin: 16px 0; box-shadow: 0 1px 6px rgba(0,0,0,.06); overflow: hidden; }
+.day-header { padding: 14px 18px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; user-select: none; transition: .2s; }
+.day-header:hover { background: var(--gray-light); }
+.day-header .left { display: flex; align-items: center; gap: 12px; }
+.day-header .date-badge { background: var(--blue); color: white; padding: 6px 12px; border-radius: 8px; font-weight: 700; font-size: .85rem; min-width: 55px; text-align: center; }
+.day-header .date-badge.london { background: var(--red); }
+.day-header .date-badge.annecy { background: var(--green); }
+.day-header .date-badge.travel { background: var(--purple); }
+.day-header .title { font-weight: 600; font-size: 1rem; }
+.day-header .city-tag { font-size: .75rem; background: var(--blue-light); color: var(--blue); padding: 2px 10px; border-radius: 12px; }
+.day-header .city-tag.london { background: #FDEDEC; color: var(--red); }
+.day-header .city-tag.annecy { background: var(--green-bg); color: var(--green); }
+.day-header .arrow { font-size: 1.2rem; color: var(--gray); transition: .3s; }
+.day.open .arrow { transform: rotate(180deg); }
+.day-body { display: none; padding: 0 18px 18px; }
+.day.open .day-body { display: block; }
+
+/* TIMELINE */
+.timeline { position: relative; padding-left: 24px; }
+.timeline::before { content: ''; position: absolute; left: 8px; top: 8px; bottom: 8px; width: 2px; background: var(--gray-border); }
+.tl-item { position: relative; margin-bottom: 14px; padding-left: 16px; }
+.tl-item::before { content: ''; position: absolute; left: -20px; top: 8px; width: 10px; height: 10px; border-radius: 50%; background: var(--blue-light); border: 2px solid var(--blue-mid); }
+.tl-item.bought::before { background: var(--green); border-color: var(--green); }
+.tl-item.buy::before { background: var(--orange); border-color: var(--orange); }
+.tl-item.urgent::before { background: var(--red); border-color: var(--red); }
+.tl-time { font-size: .8rem; color: var(--gray); font-weight: 600; }
+.tl-activity { font-size: .92rem; font-weight: 500; }
+.tl-detail { font-size: .82rem; color: var(--text-light); margin-top: 2px; }
+
+/* METRO BOX */
+.metro-box { background: linear-gradient(135deg, #EBF5FB 0%, #F0F4F8 100%); border: 1px solid #BDD7EE; border-radius: 10px; padding: 12px 14px; margin: 8px 0 4px; font-size: .84rem; }
+.metro-box .route { font-weight: 600; color: var(--blue); margin-bottom: 4px; }
+.metro-box .steps { color: var(--text-light); }
+.metro-box .steps span { display: inline-block; margin: 0 4px; }
+.metro-line { display: inline-block; padding: 1px 8px; border-radius: 10px; color: white; font-size: .75rem; font-weight: 700; margin: 0 2px; }
+.m1 { background: #FFCE00; color: #000; } .m2 { background: #003CA6; } .m3 { background: #837902; }
+.m4 { background: #CF009E; } .m5 { background: #FF7E2E; } .m6 { background: #6ECA97; color: #000; }
+.m7 { background: #FA9ABA; color: #000; } .m8 { background: #E19BDF; } .m9 { background: #B6BD00; color: #000; }
+.m10 { background: #C9910D; } .m11 { background: #704B1C; } .m12 { background: #007852; }
+.m13 { background: #6EC4E8; color: #000; } .m14 { background: #62259D; }
+.rera { background: #E3051C; } .rerb { background: #4C90CD; } .rerc { background: #FFCE00; color: #000; }
+.rerd { background: #00814F; }
+.district { background: #007D32; } .piccadilly { background: #003688; } .circle { background: #FFD300; color: #000; }
+.jubilee { background: #A0A5A9; } .central { background: #E32017; } .northern { background: #000; }
+.victoria { background: #0098D4; } .dlr { background: #00A4A7; }
+
+/* STATUS BADGES */
+.badge { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: .75rem; font-weight: 600; }
+.badge-bought { background: var(--green-bg); color: var(--green); }
+.badge-buy { background: var(--orange-bg); color: #D68910; }
+.badge-urgent { background: var(--red-bg); color: var(--red); }
+.badge-free { background: #EBF5FB; color: var(--blue-mid); }
+.badge-optional { background: #F4ECF7; color: var(--purple); }
+
+/* TIP BOX */
+.tip { background: #FFF8E1; border-left: 3px solid var(--orange); padding: 10px 14px; border-radius: 0 8px 8px 0; margin: 10px 0; font-size: .85rem; }
+.tip strong { color: var(--orange); }
+.warning { background: var(--red-bg); border-left-color: var(--red); }
+.warning strong { color: var(--red); }
+
+/* CHECKLIST */
+.checklist { list-style: none; }
+.checklist li { padding: 10px 14px; border-bottom: 1px solid var(--gray-border); display: flex; align-items: flex-start; gap: 10px; font-size: .9rem; }
+.checklist li:last-child { border-bottom: none; }
+.checklist .check { width: 20px; height: 20px; border: 2px solid var(--gray-border); border-radius: 4px; cursor: pointer; flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; transition: .2s; }
+.checklist .check.done { background: var(--green); border-color: var(--green); }
+.checklist .check.done::after { content: '✓'; color: white; font-size: .75rem; font-weight: 700; }
+.checklist .item-text { flex: 1; }
+.checklist .item-link { color: var(--blue-mid); text-decoration: none; font-size: .82rem; }
+.checklist .item-link:hover { text-decoration: underline; }
+.priority-high { border-left: 3px solid var(--red); }
+.priority-med { border-left: 3px solid var(--orange); }
+.priority-low { border-left: 3px solid var(--green); }
+
+/* REFS TABLE */
+.ref-table { width: 100%; border-collapse: collapse; font-size: .88rem; margin: 12px 0; }
+.ref-table th { background: var(--blue); color: white; padding: 10px 12px; text-align: left; }
+.ref-table td { padding: 10px 12px; border-bottom: 1px solid var(--gray-border); }
+.ref-table tr:nth-child(even) { background: var(--gray-light); }
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .hero h2 { font-size: 1.5rem; }
+  .nav h1 { font-size: .95rem; }
+  .nav-tabs button { padding: 5px 10px; font-size: .75rem; }
+  .info-grid { grid-template-columns: 1fr; }
+  .day-header .title { font-size: .9rem; }
+}
+
+/* PRINT */
+@media print {
+  .nav { position: static; }
+  .day-body { display: block !important; }
+  .section { display: block !important; }
+  .day { break-inside: avoid; }
+}
+
+/* SEARCH */
+.search-bar { max-width: 900px; margin: 12px auto 0; padding: 0 16px; }
+.search-bar input { width: 100%; padding: 10px 16px; border: 1px solid var(--gray-border); border-radius: 24px; font-size: .9rem; outline: none; }
+.search-bar input:focus { border-color: var(--blue-mid); box-shadow: 0 0 0 3px rgba(46,117,182,.15); }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <h1>🗼 Paris & Londres 2026</h1>
+    <div class="nav-tabs">
+      <button class="active" onclick="showSection('roteiro')">Roteiro</button>
+      <button onclick="showSection('checklist')">Checklist</button>
+      <button onclick="showSection('transporte')">Transporte</button>
+      <button onclick="showSection('refs')">Referências</button>
+      <button onclick="showSection('dicas')">Dicas</button>
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <h2>Paris & Londres</h2>
+  <div class="sub">10 a 23 de Abril de 2026 · 14 dias</div>
+  <div class="travelers">
+    <span>Luis Marcelo</span>
+    <span>Janaina</span>
+    <span>Carlos Eduardo</span>
+    <span>Cristiane</span>
+    <span class="youth">Ana Flavia (17) 🎟️ grátis em museus</span>
+  </div>
+</div>
+
+<div class="search-bar"><input type="text" id="search" placeholder="🔍 Buscar... (ex: Louvre, metrô, Eiffel, ticket)" oninput="filterDays(this.value)"></div>
+
+<div class="container">
+
+<!-- ==================== ROTEIRO ==================== -->
+<div class="section active" id="sec-roteiro">
+
+<div class="info-grid">
+  <div class="info-card">
+    <h4>🏨 Hotel Paris (8 noites)</h4>
+    <p><span class="highlight">Novotel Suites Montreuil Vincennes</span><br>Metrô: Porte de Montreuil <span class="metro-line m9">9</span><br>10/04 → 18/04</p>
+  </div>
+  <div class="info-card">
+    <h4>🏔️ Hotel Annecy (1 noite)</h4>
+    <p><span class="highlight">Privilodges Le Royal Annecy</span><br>15/04 → 16/04</p>
+  </div>
+  <div class="info-card" style="border-left-color: var(--red);">
+    <h4>🏨 Hotel Londres (5 noites)</h4>
+    <p><span class="highlight">Mowbray Court Hotel, Earl's Court</span><br>Metrô: Earl's Court <span class="metro-line district">District</span> <span class="metro-line piccadilly">Piccadilly</span><br>18/04 → 23/04</p>
+  </div>
+
+<div class="info-grid">
+  <div class="info-card" style="border-left-color: var(--red);">
+    <h4>⚠️ Eurostar API (ANTES da viagem!)</h4>
+    <p>Preencham o <span class="highlight">Advance Passenger Information</span> no site da Eurostar antes de viajar. Sem isso, podem ser impedidos de embarcar!<br><a href="https://www.eurostar.com" target="_blank">🔗 eurostar.com → Manage Booking → ref MYTTTV</a></p>
+  </div>
+  <div class="info-card" style="border-left-color: var(--orange);">
+    <h4>⏰ Fuso Horário</h4>
+    <p><span class="highlight">Londres = Paris − 1 hora</span><br>Quando são 14h em Paris, são 13h em Londres. Atenção no dia do Eurostar (18/04)!</p>
+  </div>
+  <div class="info-card" style="border-left-color: var(--purple);">
+    <h4>📱 SIM Card / Internet</h4>
+    <p>Comprem um <span class="highlight">eSIM europeu</span> (Airalo, Holafly) ou chip físico no aeroporto. WiFi nos hotéis é bom, mas nas ruas/metrô vocês precisam de dados.</p>
+  </div>
+</div>
+
+</div>
+
+<!-- DIA 1: 10/04 -->
+<div class="day" data-search="chegada cdg paris hotel novotel roissybus rer">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left">
+      <span class="date-badge">Sex 10</span>
+      <div>
+        <div class="title">Chegada em Paris ✈️</div>
+        <span class="city-tag">Paris</span>
+      </div>
+    </div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-time">17:20</div>
+        <div class="tl-activity">Chegada CDG — Imigração + Malas</div>
+        <div class="tl-detail">Margem realista: 40-80 min na fila de imigração.Tenham passaportes e reserva do hotel acessíveis.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">18:40 → 20:15</div>
+        <div class="tl-activity">CDG → Hotel Novotel Montreuil</div>
+        <div class="tl-detail">Tempo estimado: ~90 min</div>
+        <div class="metro-box">
+          <div class="route">🚇 Opção 1 — RER B + Metrô (mais barata, ~€11/pessoa)</div>
+          <div class="steps">
+            CDG Terminal → <span class="metro-line rerb">RER B</span> dir. Robinson/St-Rémy → <strong>Châtelet-Les Halles</strong> (~35 min)<br>
+            Baldeação → <span class="metro-line m1">1</span> dir. Château de Vincennes → <strong>Nation</strong> (~6 min)<br>
+            Baldeação → <span class="metro-line m9">9</span> dir. Mairie de Montreuil → <strong>Porte de Montreuil</strong> (~3 min)<br>
+            🚶 Caminhada ~8 min até o hotel
+          </div>
+        </div>
+        <div class="metro-box">
+          <div class="route">🚌 Opção 2 — RoissyBus + Metrô (mais simples)</div>
+          <div class="steps">
+            CDG → <strong>RoissyBus</strong> → <strong>Opéra</strong> (~75 min, €16.20/pessoa)<br>
+            <span class="metro-line m8">8</span> dir. Créteil → <strong>Grands Boulevards</strong> (1 parada)<br>
+            Baldeação → <span class="metro-line m9">9</span> dir. Mairie de Montreuil → <strong>Porte de Montreuil</strong> (~15 min)
+          </div>
+        </div>
+        <div class="tip"><strong>💡 Sugestão:</strong> Com malas pesadas e 5 pessoas, o RoissyBus é mais confortável. Se quiserem economizar, RER B funciona bem.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">20:15 → 20:45</div>
+        <div class="tl-activity">Check-in + banho rápido</div>
+        <div class="tl-detail">Reset depois do voo!</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">21:00 → 22:45</div>
+        <div class="tl-activity">Caminhada leve pelo Sena (fotos noturnas) 📸</div>
+        <div class="tl-detail">Opcional: se tiverem energia, peguem o <span class="metro-line m9">9</span> até Trocadéro para ver a Torre Eiffel iluminada à noite (desliga à 01h).</div>
+      </div>
+    </div>
+    <div class="tip warning"><strong>⚠️ Importante:</strong> Dormir cedo! Versailles amanhã às 09h — precisam acordar ~06:45.</div>
+  </div>
+</div>
+
+<!-- DIA 2: 11/04 -->
+<div class="day" data-search="versailles palacio jardins trianon cruzeiro sena bateaux">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left">
+      <span class="date-badge">Sáb 11</span>
+      <div>
+        <div class="title">Versailles + Cruzeiro no Sena 🏰</div>
+        <span class="city-tag">Paris</span> <span class="badge badge-bought">✅ Versailles</span> <span class="badge badge-buy">❌ Cruzeiro</span>
+      </div>
+    </div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-time">06:45</div>
+        <div class="tl-activity">Acordar</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">07:30 → 08:45</div>
+        <div class="tl-activity">Hotel → Versailles</div>
+        <div class="tl-detail">Tempo: ~75 min porta a porta</div>
+        <div class="metro-box">
+          <div class="route">🚇 Hotel → Versailles</div>
+          <div class="steps">
+            <strong>Porte de Montreuil</strong> → <span class="metro-line m9">9</span> dir. Pont de Sèvres → <strong>Franklin D. Roosevelt</strong> (~18 min)<br>
+            Baldeação → <span class="metro-line m1">1</span> dir. La Défense → <strong>Invalides</strong> (~5 min)<br>
+            Baldeação → <span class="metro-line rerc">RER C</span> dir. Versailles Rive Gauche → <strong>Versailles Château Rive Gauche</strong> (~30 min)<br>
+            🚶 10 min caminhando até o Palácio, Entrada A (Pavilhão Dufour)
+          </div>
+        </div>
+      </div>
+      <div class="tl-item bought">
+        <div class="tl-time">09:00 → 12:00</div>
+        <div class="tl-activity">Palácio de Versailles <span class="badge badge-bought">✅ COMPRADO</span></div>
+        <div class="tl-detail">Entrada A, Pavilhão Dufour, 09h00. Billet Passeport × 4 adultos (€140). Ana Flavia grátis (&lt;18 anos).</div>
+        <div class="tip"><strong>💡 Dentro:</strong> Salões nobres → Galeria dos Espelhos → Capelas. Não percam a Galeria dos Espelhos! Levem água e snacks — cafés caros dentro. 📲 Baixem o app do Château de Versailles para mapa interativo!</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">12:00 → 13:00</div>
+        <div class="tl-activity">Almoço rápido</div>
+        <div class="tl-detail">Opções: La Flottille (nos jardins) ou piquenique comprado antes.</div>
+      </div>
+      <div class="tl-item bought">
+        <div class="tl-time">13:00 → 16:30</div>
+        <div class="tl-activity">Jardins + Trianon + Domínio de Marie-Antoinette <span class="badge badge-bought">Incluso</span></div>
+        <div class="tl-detail">Trianon abre às 12h. Incluído no Billet Passeport. Jardins são imensos — foquem no Grand/Petit Trianon + Hameau de la Reine.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">16:30 → 18:15</div>
+        <div class="tl-activity">Volta para Paris + descanso</div>
+        <div class="metro-box">
+          <div class="route">🚇 Versailles → Hotel (mesmo caminho de volta)</div>
+          <div class="steps">
+            <strong>Versailles Château Rive Gauche</strong> → <span class="metro-line rerc">RER C</span> dir. Pontoise/Montigny → <strong>Invalides</strong><br>
+            Baldeação → <span class="metro-line m9">9</span> dir. Mairie de Montreuil → <strong>Porte de Montreuil</strong>
+          </div>
+        </div>
+      </div>
+      <div class="tl-item buy">
+        <div class="tl-time">20:30 → 21:45</div>
+        <div class="tl-activity">Cruzeiro no Sena 🚢 <span class="badge badge-buy">❌ COMPRAR</span></div>
+        <div class="tl-detail">~€16-18/adulto. Ana Flavia desconto youth.<br>
+        <a href="https://www.bateauxparisiens.com" target="_blank">🔗 Bateaux Parisiens</a> (saída: pé da Torre Eiffel) ou <a href="https://www.vedettesdupontneuf.com" target="_blank">🔗 Vedettes du Pont Neuf</a> (saída: Île de la Cité)</div>
+        <div class="metro-box">
+          <div class="route">🚇 Hotel → Cruzeiro (Bateaux Parisiens)</div>
+          <div class="steps">
+            <strong>Porte de Montreuil</strong> → <span class="metro-line m9">9</span> dir. Pont de Sèvres → <strong>Trocadéro</strong> (~25 min)<br>
+            🚶 12 min caminhando até o pier (Pont d'Iéna, pé da Torre Eiffel)
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tip"><strong>💡 Sugestão:</strong> Bateaux Parisiens é mais famoso e sai literalmente ao pé da Torre Eiffel — ótimo para fotos ao embarcar! Vedettes é menor e mais intimista.</div>
+  </div>
+</div>
+
+<!-- DIA 3: 12/04 -->
+<div class="day" data-search="sainte chapelle notre dame louvre orangerie arco triunfo champs elysees tuileries">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left">
+      <span class="date-badge">Dom 12</span>
+      <div>
+        <div class="title">Sainte-Chapelle + Louvre + Orangerie + Arco 🎨</div>
+        <span class="city-tag">Paris</span> <span class="badge badge-bought">✅ ×2</span> <span class="badge badge-buy">❌ ×2</span>
+      </div>
+    </div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-time">07:15 / 08:00</div>
+        <div class="tl-activity">Acordar / Sair do hotel</div>
+        <div class="metro-box">
+          <div class="route">🚇 Hotel → Sainte-Chapelle</div>
+          <div class="steps">
+            <strong>Porte de Montreuil</strong> → <span class="metro-line m9">9</span> dir. Pont de Sèvres → <strong>Strasbourg-Saint-Denis</strong> (~12 min)<br>
+            Baldeação → <span class="metro-line m4">4</span> dir. Mairie de Montrouge → <strong>Cité</strong> (~6 min)<br>
+            🚶 3 min até Sainte-Chapelle (Île de la Cité)
+          </div>
+        </div>
+      </div>
+      <div class="tl-item bought">
+        <div class="tl-time">09:00 → 10:00</div>
+        <div class="tl-activity">Sainte-Chapelle <span class="badge badge-bought">✅ COMPRADO</span></div>
+        <div class="tl-detail">4 adultos × €22 = €88 + Ana Flavia grátis (&lt;18). Os vitrais são de tirar o fôlego — vão de manhã quando o sol bate!</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">10:00 → 10:45</div>
+        <div class="tl-activity">Île de la Cité + Notre-Dame (externo) <span class="badge badge-free">GRÁTIS</span></div>
+        <div class="tl-detail">Notre-Dame reabriu em 2024. Interior: verificar disponibilidade de entrada gratuita (fila pode ser longa). Exterior já vale muito.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">11:15 → 12:15</div>
+        <div class="tl-activity">Pausa almoço leve</div>
+        <div class="tl-detail">Comam leve para aguentar o Louvre inteiro! Rue Saint-Louis en l'Île tem opções boas.</div>
+      </div>
+      <div class="tl-item bought">
+        <div class="tl-time">12:30 → 16:00</div>
+        <div class="tl-activity">Louvre <span class="badge badge-bought">✅ COMPRADO</span></div>
+        <div class="tl-detail">Carta PMP, entrada 13h. Ref: V26078728323. 3 ingressos (Luis, Janaina, Carlos Eduardo) — verificar ingresso da Cristiane! Ana Flavia grátis (<18).<br>Entrem pela Carrousel du Louvre (menos fila que a Pirâmide).</div>
+        <div class="metro-box">
+          <div class="route">🚶 Sainte-Chapelle → Louvre (a pé ~15 min)</div>
+          <div class="steps">
+            Pela Pont au Change → Quai de la Mégisserie → entrada Carrousel du Louvre (99 Rue de Rivoli). Caminhada bonita pelo Sena!
+          </div>
+        </div>
+        <div class="tip"><strong>💡 Prioridades no Louvre:</strong> Mona Lisa (Denon, 1º andar) → Vitória de Samotrácia → Vênus de Milo → Galeria da Coroação de Napoleão. Peguem mapa na entrada!</div>
+      </div>
+      <div class="tl-item buy">
+        <div class="tl-time">16:30 → 17:45</div>
+        <div class="tl-activity">Orangerie (Nenúfares de Monet) <span class="badge badge-buy">❌ COMPRAR</span></div>
+        <div class="tl-detail">~€12.50/adulto (Ana grátis &lt;18). Pequeno mas impactante — as salas ovais com Nenúfares são mágicas.<br>
+        <a href="https://www.musee-orangerie.fr" target="_blank">🔗 musee-orangerie.fr</a></div>
+        <div class="metro-box">
+          <div class="route">🚶 Louvre → Orangerie (a pé ~12 min)</div>
+          <div class="steps">Saída do Louvre → Jardins das Tuileries → caminhem até o final do jardim (lado Concorde). Orangerie fica na esquina sudoeste.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">18:00 → 19:15</div>
+        <div class="tl-activity">Caminhada: Tuileries → Place de la Concorde → Champs-Élysées <span class="badge badge-free">GRÁTIS</span></div>
+        <div class="tl-detail">~2.5 km a pé, super agradável no fim de tarde. Subam a Champs-Élysées até o Arco.</div>
+      </div>
+      <div class="tl-item buy">
+        <div class="tl-time">19:30 → 20:30</div>
+        <div class="tl-activity">Arco do Triunfo (subida ao topo) 🌅 <span class="badge badge-buy">❌ COMPRAR</span></div>
+        <div class="tl-detail">~€13/adulto (Ana grátis &lt;18). 284 degraus. Vista 360° espetacular no pôr do sol!<br>
+        <a href="https://www.paris-arc-de-triomphe.fr" target="_blank">🔗 paris-arc-de-triomphe.fr</a></div>
+      </div>
+    </div>
+    <div class="tip"><strong>💡 Dia cheio mas épico!</strong> O percurso é linear (Île de la Cité → Louvre → Tuileries → Champs → Arco), sem vai-e-volta. Usem sapatos confortáveis!</div>
+  </div>
+</div>
+
+<!-- DIA 4: 13/04 -->
+<div class="day" data-search="montmartre sacre coeur opera garnier catacumbas catacombes">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left">
+      <span class="date-badge">Seg 13</span>
+      <div>
+        <div class="title">Montmartre + Ópera Garnier + Catacumbas 💀</div>
+        <span class="city-tag">Paris</span> <span class="badge badge-buy">❌ ×2</span>
+      </div>
+    </div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-time">07:15 / 08:00</div>
+        <div class="tl-activity">Acordar / Sair do hotel</div>
+        <div class="metro-box">
+          <div class="route">🚇 Hotel → Montmartre</div>
+          <div class="steps">
+            <strong>Porte de Montreuil</strong> → <span class="metro-line m9">9</span> dir. Pont de Sèvres → <strong>Strasbourg-Saint-Denis</strong> (~12 min)<br>
+            Baldeação → <span class="metro-line m4">4</span> dir. Porte de Clignancourt → <strong>Barbès-Rochechouart</strong> (~6 min)<br>
+            🚶 Subam a pé por Rue Steinkerque (~12 min) ou peguem o funicular (~2 min, vale o ticket de metrô)
+          </div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">09:00 → 12:00</div>
+        <div class="tl-activity">Montmartre + Sacré-Cœur <span class="badge badge-free">GRÁTIS</span></div>
+        <div class="tl-detail">Basílica gratuita (cúpula paga ~€7, vale a vista). Place du Tertre (artistas), Mur des Je t'aime (muro dos "eu te amo"), Moulin Rouge (externo). Cedo = menos multidão!</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">12:00 → 13:15</div>
+        <div class="tl-activity">Almoço + deslocamento</div>
+        <div class="tl-detail">Almoço em Montmartre: Le Consulat, La Bonne Franquette, ou descendo para Boulevard de Clichy.</div>
+        <div class="metro-box">
+          <div class="route">🚇 Montmartre → Ópera</div>
+          <div class="steps">
+            <strong>Anvers</strong> → <span class="metro-line m2">2</span> dir. Nation → <strong>Opéra</strong> (~8 min, 5 paradas)<br>
+            🚶 2 min até Palais Garnier
+          </div>
+        </div>
+      </div>
+      <div class="tl-item buy">
+        <div class="tl-time">14:00 → 15:30</div>
+        <div class="tl-activity">Ópera Garnier (visita autônoma) <span class="badge badge-buy">❌ COMPRAR</span></div>
+        <div class="tl-detail">~€14/adulto, Ana ~€10 (youth). Interior deslumbrante — o teto pintado por Chagall é imperdível!<br>
+        <a href="https://www.operadeparis.fr" target="_blank">🔗 operadeparis.fr</a></div>
+      </div>
+      <div class="tl-item urgent">
+        <div class="tl-time">16:30 → 18:00</div>
+        <div class="tl-activity">Catacumbas de Paris 💀 <span class="badge badge-urgent">❌ COMPRAR URGENTE</span></div>
+        <div class="tl-detail">~€29/adulto (Ana grátis &lt;18). ESGOTA SEMANAS ANTES! Comprem JÁ.<br>
+        <a href="https://www.catacombes.paris.fr" target="_blank">🔗 catacombes.paris.fr</a></div>
+        <div class="metro-box">
+          <div class="route">🚇 Ópera → Catacumbas</div>
+          <div class="steps">
+            <strong>Opéra</strong> → <span class="metro-line m14">14</span> dir. Olympiades → <strong>Châtelet</strong> (~3 min)<br>
+            Baldeação → <span class="metro-line m4">4</span> dir. Mairie de Montrouge → <strong>Denfert-Rochereau</strong> (~12 min)<br>
+            🚶 Entrada das Catacumbas: 1 Avenue du Colonel Henri Rol-Tanguy (saída da estação, 1 min)
+          </div>
+        </div>
+        <div class="tip warning"><strong>⚠️ Catacumbas:</strong> São 130 degraus para descer, 83 para subir. Temperatura lá embaixo: 14°C — levem um casaquinho! Proibido tocar nos ossos.</div>
+        <div class="tip warning"><strong>⚠️ ATENÇÃO: CATACUMBAS FECHAM ÀS SEGUNDAS-FEIRAS!</strong> O dia 13/04 é segunda-feira. Verifiquem o horário atualizado em <a href="https://www.catacombes.paris.fr" target="_blank">catacombes.paris.fr</a>. Se estiver fechado, considerem trocar a visita com outra atração — ou reagendem para outro dia livre.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DIA 5: 14/04 -->
+<div class="day" data-search="orsay musee rodin invalides torre eiffel trocadero">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left">
+      <span class="date-badge">Ter 14</span>
+      <div>
+        <div class="title">Orsay + Rodin + Torre Eiffel 🗼</div>
+        <span class="city-tag">Paris</span> <span class="badge badge-buy">❌ ×3</span>
+      </div>
+    </div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-time">07:45 / 08:30</div>
+        <div class="tl-activity">Acordar / Sair do hotel</div>
+        <div class="metro-box">
+          <div class="route">🚇 Hotel → Musée d'Orsay</div>
+          <div class="steps">
+            <strong>Porte de Montreuil</strong> → <span class="metro-line m9">9</span> dir. Pont de Sèvres → <strong>Iéna</strong> (~23 min)<br>
+            🚶 Caminhada ~15 min pela Pont de l'Alma até Orsay<br><br>
+            <strong>OU mais direto:</strong><br>
+            <span class="metro-line m9">9</span> → <strong>Franklin D. Roosevelt</strong> → Baldeação <span class="metro-line m1">1</span> → <strong>Concorde</strong><br>
+            Baldeação <span class="metro-line m12">12</span> dir. Mairie d'Issy → <strong>Solférino</strong> (1 parada)<br>
+            🚶 3 min até Orsay
+          </div>
+        </div>
+      </div>
+      <div class="tl-item buy">
+        <div class="tl-time">09:30 → 12:00</div>
+        <div class="tl-activity">Musée d'Orsay <span class="badge badge-buy">❌ COMPRAR</span></div>
+        <div class="tl-detail">€16/adulto (Ana grátis &lt;18). Impressionistas: Monet, Renoir, Degas, Van Gogh, Cézanne. O relógio gigante com vista é icônico!<br>
+        <a href="https://www.musee-orsay.fr" target="_blank">🔗 musee-orsay.fr</a></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">12:00 → 13:15</div>
+        <div class="tl-activity">Almoço</div>
+        <div class="tl-detail">Café Campana dentro do Orsay (bonito!) ou Rue du Bac (muitas opções).</div>
+      </div>
+      <div class="tl-item buy">
+        <div class="tl-time">13:30 → 15:00</div>
+        <div class="tl-activity">Musée Rodin <span class="badge badge-buy">❌ COMPRAR</span></div>
+        <div class="tl-detail">€14/adulto (Ana grátis &lt;18). O Pensador, O Beijo, Portões do Inferno. Jardim lindo!<br>
+        <a href="https://www.musee-rodin.fr" target="_blank">🔗 musee-rodin.fr</a></div>
+        <div class="metro-box">
+          <div class="route">🚶 Orsay → Rodin (a pé ~15 min)</div>
+          <div class="steps">Caminhada agradável pela Rue de l'Université ou pelo Quai d'Orsay. Passem pelos Invalides no caminho.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">15:15 → 17:00</div>
+        <div class="tl-activity">Invalides (exterior) + descanso <span class="badge badge-free">GRÁTIS</span></div>
+        <div class="tl-detail">Exterior grandioso, gramado perfeito para descansar. Se quiserem entrar (tumba de Napoleão): ~€15/adulto.</div>
+      </div>
+      <div class="tl-item urgent">
+        <div class="tl-time">19:30 → 21:00</div>
+        <div class="tl-activity">Torre Eiffel 🗼 <span class="badge badge-urgent">❌ COMPRAR URGENTE!!</span></div>
+        <div class="tl-detail">~€17-27/adulto (depende: 2º andar vs. topo). Ana ~€8-14 (youth 12-17).<br>
+        <strong>ESGOTA MESES ANTES — comprem AGORA!</strong><br>
+        <a href="https://www.toureiffel.paris" target="_blank">🔗 toureiffel.paris</a></div>
+        <div class="metro-box">
+          <div class="route">🚇 Invalides → Torre Eiffel</div>
+          <div class="steps">
+            🚶 A pé ~20 min pelo Champ de Mars (bonito!)<br>
+            OU <strong>Invalides</strong> → <span class="metro-line m8">8</span> dir. Balard → <strong>École Militaire</strong> (2 paradas)<br>
+            🚶 8 min até a Torre pelo Champ de Mars
+          </div>
+        </div>
+        <div class="tip warning"><strong>⚠️ PRIORIDADE #1:</strong> Ingressos para Torre Eiffel abrem ~60 dias antes (~10 de fevereiro para 14/04). Se já passou, tentem todos os dias pois devoluções aparecem. Horário noturno (19:30+) é mágico — Paris toda iluminada!</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">21:00 → 22:00</div>
+        <div class="tl-activity">Trocadéro (vista noturna) <span class="badge badge-free">GRÁTIS</span></div>
+        <div class="tl-detail">A melhor vista da Torre Eiffel. Atravessem a Pont d'Iéna após descerem. Fotos espetaculares!</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DIA 6: 15/04 -->
+<div class="day" data-search="annecy trem sncf gare lyon lago old town">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left">
+      <span class="date-badge annecy">Qua 15</span>
+      <div>
+        <div class="title">Trem para Annecy + Old Town + Lago 🏔️</div>
+        <span class="city-tag annecy">Annecy</span> <span class="badge badge-urgent">❌ Trem URGENTE</span>
+      </div>
+    </div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-time">06:30</div>
+        <div class="tl-activity">Acordar (malas semi-prontas na noite anterior)</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">07:15 → 08:00</div>
+        <div class="tl-activity">Hotel → Gare de Lyon</div>
+        <div class="metro-box">
+          <div class="route">🚇 Hotel → Gare de Lyon</div>
+          <div class="steps">
+            <strong>Porte de Montreuil</strong> → <span class="metro-line m9">9</span> dir. Pont de Sèvres → <strong>Nation</strong> (~5 min)<br>
+            Baldeação → <span class="metro-line m1">1</span> dir. La Défense → <strong>Gare de Lyon</strong> (2 paradas, ~4 min)<br>
+            🕐 Total: ~20 min. Cheguem 40-60 min antes do trem!
+          </div>
+        </div>
+      </div>
+      <div class="tl-item urgent">
+        <div class="tl-time">~08:30/09:00</div>
+        <div class="tl-activity">TGV Paris Gare de Lyon → Annecy <span class="badge badge-urgent">❌ COMPRAR URGENTE</span></div>
+        <div class="tl-detail">Duração: ~3h30. Preços sobem MUITO! Comprem já em <a href="https://www.sncf-connect.com" target="_blank">🔗 sncf-connect.com</a><br>
+        Busquem trens diretos (sem baldeação). TGV INOUI ou OUIGO são as opções.<br>
+        Preço bom: €30-50/pessoa. Preço caro: €80-100/pessoa.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">~12:30</div>
+        <div class="tl-activity">Chegada em Annecy + check-in</div>
+        <div class="tl-detail">Privilodges Le Royal: a ~10 min a pé da estação.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">14:00 → 16:30</div>
+        <div class="tl-activity">Almoço + início da exploração</div>
+        <div class="tl-detail">Almocem na Vieille Ville! Restaurantes na Rue Sainte-Claire. Pratos savoyards: fondue, raclette, tartiflette.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">16:30 → 19:30</div>
+        <div class="tl-activity">Old Town + Canais + Palais de l'Isle <span class="badge badge-free">GRÁTIS</span></div>
+        <div class="tl-detail">Palais de l'Isle: o predinho no meio do canal (foto icônica de Annecy). Canais coloridos, pontes, lojas. Tudo a pé!</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">19:30 → 21:30</div>
+        <div class="tl-activity">Lago de Annecy + jantar 🌅</div>
+        <div class="tl-detail">Jardins de l'Europe + Le Pâquier (gramadão à beira do lago). Vista dos Alpes incrível ao pôr do sol. Jantar em algum restaurante com terraço no lago.</div>
+      </div>
+    </div>
+    <div class="tip"><strong>💡 Annecy é mágica!</strong> Cidade pequena, tudo a pé. A água do lago é tão limpa que dá para beber. Anoitece ~20:30 em abril — aproveitem a luz!</div>
+  </div>
+</div>
+
+<!-- DIA 7: 16/04 -->
+<div class="day" data-search="annecy lago trem volta paris canal saint martin">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left">
+      <span class="date-badge annecy">Qui 16</span>
+      <div>
+        <div class="title">Annecy (manhã) + Volta para Paris 🚄</div>
+        <span class="city-tag annecy">Annecy → Paris</span> <span class="badge badge-urgent">❌ Trem URGENTE</span>
+      </div>
+    </div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-time">07:30 → 09:00</div>
+        <div class="tl-activity">Lago cedo (melhor luz, pouca gente) 📸</div>
+        <div class="tl-detail">IMPERDÍVEL de manhã! O lago com reflexo dos Alpes e névoa matinal é espetacular. Levem a câmera.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">09:00 → 10:00</div>
+        <div class="tl-activity">Café da manhã + checkout</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">10:00 → 11:30</div>
+        <div class="tl-activity">Passeio final Old Town + compras de souvenirs</div>
+        <div class="tl-detail">Queijos, chocolates, vinhos savoyards — bons souvenirs!</div>
+      </div>
+      <div class="tl-item urgent">
+        <div class="tl-time">~12:00</div>
+        <div class="tl-activity">TGV Annecy → Paris Gare de Lyon <span class="badge badge-urgent">❌ COMPRAR URGENTE</span></div>
+        <div class="tl-detail">Busquem trem ~12:00 para chegar em Paris ~15:30-16:00.<br>
+        <a href="https://www.sncf-connect.com" target="_blank">🔗 sncf-connect.com</a></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">~16:00</div>
+        <div class="tl-activity">Chegada Gare de Lyon + hotel</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">18:30 → 20:30</div>
+        <div class="tl-activity">Canal Saint-Martin (passeio + jantar) <span class="badge badge-free">GRÁTIS</span></div>
+        <div class="tl-detail">Área charmosa, jovem e hipster. Bridges fotogênicas, restaurantes com terraço ao longo do canal.</div>
+        <div class="metro-box">
+          <div class="route">🚇 Hotel → Canal Saint-Martin</div>
+          <div class="steps">
+            <strong>Porte de Montreuil</strong> → <span class="metro-line m9">9</span> dir. Pont de Sèvres → <strong>République</strong> (~10 min)<br>
+            🚶 5 min até o Canal Saint-Martin (Quai de Jemmapes)
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DIA 8: 17/04 -->
+<div class="day" data-search="disneyland disney paris marne vallee rer chessy">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left">
+      <span class="date-badge">Sex 17</span>
+      <div>
+        <div class="title">Disneyland Paris 🏰✨ (dia inteiro)</div>
+        <span class="city-tag">Disney</span> <span class="badge badge-bought">✅ COMPRADO</span>
+      </div>
+    </div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-time">06:45</div>
+        <div class="tl-activity">Acordar</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">07:30 → 08:45</div>
+        <div class="tl-activity">Hotel → Disneyland</div>
+        <div class="metro-box">
+          <div class="route">🚇 Hotel → Disneyland Paris</div>
+          <div class="steps">
+            <strong>Porte de Montreuil</strong> → <span class="metro-line m9">9</span> dir. Mairie de Montreuil → <strong>Nation</strong> (2 paradas, ~5 min)<br>
+            Baldeação → <span class="metro-line rera">RER A</span> dir. <strong>Marne-la-Vallée-Chessy</strong> (~40 min, trem direto!)<br>
+            🚶 Saída da estação = entrada do parque (2 min)
+          </div>
+        </div>
+        <div class="tip"><strong>💡 RER A:</strong> Peguem o trem que vai até o FINAL da linha (Marne-la-Vallée-Chessy). Não todos os trens vão até lá — confiram no painel antes de embarcar!</div>
+      </div>
+      <div class="tl-item bought">
+        <div class="tl-time">09:00 → 22:00</div>
+        <div class="tl-activity">Disneyland Paris — dia inteiro! <span class="badge badge-bought">✅ COMPRADO</span></div>
+        <div class="tl-detail">5 guests confirmados. Reserva no app MyDisney.</div>
+      </div>
+    </div>
+    <div class="tip"><strong>💡 Estratégia Disney:</strong> Baixem o app <strong>Disneyland Paris</strong> (tempos de fila em tempo real). Corram para as atrações mais concorridas primeiro (Big Thunder Mountain, Hyperspace Mountain, Crush's Coaster). Almocem às 11:30 ou 13:30 para evitar fila nos restaurantes.</div>
+  </div>
+</div>
+
+<!-- DIA 9: 18/04 - EUROSTAR -->
+<div class="day" data-search="eurostar gare nord london st pancras earls court">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left">
+      <span class="date-badge travel">Sáb 18</span>
+      <div>
+        <div class="title">Paris → Londres (Eurostar) 🚄</div>
+        <span class="city-tag">Paris → Londres</span> <span class="badge badge-bought">✅ Eurostar</span>
+      </div>
+    </div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-time">Manhã</div>
+        <div class="tl-activity">Manhã livre — arrumar malas, café tranquilo</div>
+        <div class="tl-detail">Aproveitem para descansar. Últimas compras em Paris se precisarem.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">12:00 → 12:30</div>
+        <div class="tl-activity">Checkout + Hotel → Gare du Nord</div>
+        <div class="metro-box">
+          <div class="route">🚇 Hotel → Gare du Nord (meta: chegar 12:30)</div>
+          <div class="steps">
+            <strong>Porte de Montreuil</strong> → <span class="metro-line m9">9</span> dir. Pont de Sèvres → <strong>Strasbourg-Saint-Denis</strong> (~12 min)<br>
+            Baldeação → <span class="metro-line m4">4</span> dir. Porte de Clignancourt → <strong>Gare du Nord</strong> (1 parada, ~2 min)<br>
+            🕐 Total: ~25 min
+          </div>
+        </div>
+        <div class="tip warning"><strong>⚠️ REGRA DE OURO EUROSTAR:</strong> Cheguem 60-90 minutos antes da partida (12:30-12:39 para o trem das 14:09). Há controle de passaporte francês E inglês + segurança tipo aeroporto.</div>
+      </div>
+      <div class="tl-item bought">
+        <div class="tl-time">14:09 → 15:30 (hora local UK)</div>
+        <div class="tl-activity">Eurostar 9035 🚄 <span class="badge badge-bought">✅ COMPRADO</span></div>
+        <div class="tl-detail"><strong>Ref: MYTTTV</strong> | Coach 7 | Assentos: 43, 44, 81, 82, 86<br>
+        Paris Gare du Nord → London St Pancras International<br>
+        ⏰ ATENÇÃO: Londres é 1h a MENOS que Paris! Saem 14:09 (Paris), chegam 15:30 (Londres). Na prática: ~2h20 de viagem.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">15:30 → 17:00</div>
+        <div class="tl-activity">St Pancras → Hotel Mowbray Court (Earl's Court)</div>
+        <div class="metro-box">
+          <div class="route">🚇 St Pancras → Earl's Court</div>
+          <div class="steps">
+            Saiam do Eurostar → sigam placas "Underground" dentro da estação<br>
+            <strong>King's Cross St Pancras</strong> → <span class="metro-line piccadilly">Piccadilly</span> dir. Heathrow → <strong>Earl's Court</strong> (~25 min, sem baldeação!)<br>
+            🚶 5-8 min até Mowbray Court Hotel (Penywern Road)
+          </div>
+        </div>
+        <div class="tip"><strong>💡 Oyster Card:</strong> Comprem na estação (máquinas amarelas) ou usem cartão contactless (Visa/Mastercard). Oyster é mais barato que tickets avulsos e tem cap diário.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">Noite</div>
+        <div class="tl-activity">Covent Garden / Soho (passeio leve de chegada) <span class="badge badge-free">GRÁTIS</span></div>
+        <div class="metro-box">
+          <div class="route">🚇 Hotel → Covent Garden</div>
+          <div class="steps">
+            <strong>Earl's Court</strong> → <span class="metro-line piccadilly">Piccadilly</span> dir. Cockfosters → <strong>Covent Garden</strong> (~15 min)<br>
+            🚶 Saiam e estão no coração de Covent Garden! Artistas de rua, pubs, restaurantes.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DIA 10: 19/04 -->
+<div class="day" data-search="westminster big ben abbey churchill war rooms buckingham west end teatro theatre">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left">
+      <span class="date-badge london">Dom 19</span>
+      <div>
+        <div class="title">Westminster + War Rooms + West End 🎭</div>
+        <span class="city-tag london">Londres</span> <span class="badge badge-buy">❌ ×2</span>
+      </div>
+    </div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-time">07:30 / 08:15</div>
+        <div class="tl-activity">Acordar / Sair do hotel</div>
+        <div class="metro-box">
+          <div class="route">🚇 Hotel → Westminster</div>
+          <div class="steps">
+            <strong>Earl's Court</strong> → <span class="metro-line district">District</span> dir. Upminster/Tower Hill → <strong>Westminster</strong> (~12 min, sem baldeação!)<br>
+            🚶 Saída da estação = vista direta do Big Ben e Parlamento
+          </div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">09:00 → 10:30</div>
+        <div class="tl-activity">Westminster: Big Ben + Parliament (exterior) <span class="badge badge-free">GRÁTIS</span></div>
+        <div class="tl-detail">Fotos do Big Ben, Houses of Parliament, Westminster Bridge. Atravessem a ponte para a foto clássica do outro lado!</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">10:45 → 12:15</div>
+        <div class="tl-activity">Westminster Abbey <span class="badge badge-optional">⚡ OPCIONAL</span></div>
+        <div class="tl-detail">~£27/adulto, ~£12 youth (11-17). Onde reis são coroados e figuras históricas enterradas. Decidam na hora conforme ânimo.<br>
+        <a href="https://www.westminster-abbey.org" target="_blank">🔗 westminster-abbey.org</a></div>
+      </div>
+      <div class="tl-item buy">
+        <div class="tl-time">13:30 → 15:30</div>
+        <div class="tl-activity">Churchill War Rooms <span class="badge badge-buy">❌ COMPRAR</span></div>
+        <div class="tl-detail">~£27/adulto, youth pode ter desconto. Bunker subterrâneo da 2ª Guerra — audioguia incluso e excelente!<br>
+        <a href="https://www.iwm.org.uk/visits/churchill-war-rooms" target="_blank">🔗 iwm.org.uk</a></div>
+        <div class="metro-box">
+          <div class="route">🚶 Westminster → War Rooms (a pé ~10 min)</div>
+          <div class="steps">Da Abbey, caminhem pela Parliament Street → virem à direita em King Charles Street → entrada na Clive Steps.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">16:00 → 17:30</div>
+        <div class="tl-activity">St James's Park + Buckingham Palace (exterior) <span class="badge badge-free">GRÁTIS</span></div>
+        <div class="tl-detail">Parque lindo! Caminhem até Buckingham para fotos. Em abril as flores estão lindas.</div>
+      </div>
+      <div class="tl-item buy">
+        <div class="tl-time">19:30 → 22:30</div>
+        <div class="tl-activity">Teatro West End 🎭 <span class="badge badge-buy">❌ COMPRAR</span></div>
+        <div class="tl-detail">Sugestões: Wicked, Hamilton, Les Misérables, O Fantasma da Ópera, O Rei Leão. Preços: £30-100/pessoa.<br>
+        <a href="https://www.londontheatredirect.com" target="_blank">🔗 londontheatredirect.com</a> ou <a href="https://www.todaytix.com" target="_blank">🔗 TodayTix (app — descontos!)</a></div>
+        <div class="metro-box">
+          <div class="route">🚇 Hotel → West End</div>
+          <div class="steps">
+            <strong>Earl's Court</strong> → <span class="metro-line piccadilly">Piccadilly</span> dir. Cockfosters → <strong>Leicester Square</strong> (~12 min)<br>
+            🚶 Todos os teatros do West End ficam a 5 min de Leicester Square
+          </div>
+        </div>
+        <div class="tip"><strong>💡 Teatro:</strong> Baixem o app <strong>TodayTix</strong> — tem ingressos com desconto, às vezes loteria por £20! Para Ana Flavia, vários shows tem preço youth.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DIA 11: 20/04 -->
+<div class="day" data-search="tower london borough market sky garden thames">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left">
+      <span class="date-badge london">Seg 20</span>
+      <div>
+        <div class="title">Tower of London + Borough Market + Sky Garden 🏰</div>
+        <span class="city-tag london">Londres</span> <span class="badge badge-bought">✅ Tower</span> <span class="badge badge-buy">❌ Sky Garden</span>
+      </div>
+    </div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-time">07:30 / 08:15</div>
+        <div class="tl-activity">Acordar / Sair do hotel</div>
+        <div class="metro-box">
+          <div class="route">🚇 Hotel → Tower of London</div>
+          <div class="steps">
+            <strong>Earl's Court</strong> → <span class="metro-line district">District</span> dir. Upminster → <strong>Tower Hill</strong> (~20 min, sem baldeação!)<br>
+            🚶 2 min até a entrada da Torre
+          </div>
+        </div>
+      </div>
+      <div class="tl-item bought">
+        <div class="tl-time">09:00 → 12:30</div>
+        <div class="tl-activity">Tower of London <span class="badge badge-bought">✅ COMPRADO</span></div>
+        <div class="tl-detail"><strong>Entrada 10:30-11:00</strong> | Ref: DVOIEV8VU8UIC<br>4 adultos (£148) + 1 youth 16-17 (£18.50) = £166.50<br>
+        Cheguem 09:00 para curtir a área antes e entrar pontualmente.</div>
+        <div class="tip"><strong>💡 Prioridades na Tower:</strong> Crown Jewels (vão primeiro — fila cresce!), White Tower, Yeoman Warder Tours (tours gratuitos de ~1h, saem a cada 30 min da entrada).</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">12:45 → 14:15</div>
+        <div class="tl-activity">Borough Market (almoço) 🍽️ <span class="badge badge-free">GRÁTIS (entrada)</span></div>
+        <div class="tl-detail">Mercado gastronômico incrível! Aberto segunda (horário reduzido: 10h-17h). Mercado completo: qua-sáb. Fish & chips, pies, queijos, pad thai, churros... Experimentem de tudo!</div>
+        <div class="metro-box">
+          <div class="route">🚶 Tower → Borough Market (a pé ~15 min)</div>
+          <div class="steps">Caminhem pela margem sul do Tâmisa: Tower → Tower Bridge (cruzem a ponte, fotos!) → descendo pelo Tooley Street → Borough Market. Caminhada linda!</div>
+        </div>
+      </div>
+      <div class="tl-item buy">
+        <div class="tl-time">15:30 → 16:30</div>
+        <div class="tl-activity">Sky Garden 🌿 <span class="badge badge-buy">❌ RESERVAR (GRÁTIS!)</span></div>
+        <div class="tl-detail">Vista 360° de Londres do 35º andar — GRATUITO mas reserva OBRIGATÓRIA!<br>
+        <a href="https://skygarden.london" target="_blank">🔗 skygarden.london</a><br>
+        Reservas abrem ~3 semanas antes. Se não conseguirem, tentem walk-in bar (sem reserva, mas precisam consumir).</div>
+        <div class="metro-box">
+          <div class="route">🚶 Borough Market → Sky Garden (a pé ~12 min)</div>
+          <div class="steps">Subam pela Borough High Street → London Bridge → atravessem para o norte → Fenchurch Street. Endereço: 20 Fenchurch Street ("Walkie-Talkie building").</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">17:00 → 18:30</div>
+        <div class="tl-activity">Caminhada Thames South Bank <span class="badge badge-free">GRÁTIS</span></div>
+        <div class="tl-detail">De volta pela ponte, caminhem pelo South Bank: vista do Shard, City Hall, HMS Belfast. Pôr do sol no Tâmisa!</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DIA 12: 21/04 -->
+<div class="day" data-search="british museum national gallery south bank waterloo gratuito free">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left">
+      <span class="date-badge london">Ter 21</span>
+      <div>
+        <div class="title">British Museum + National Gallery (100% grátis!) 🎨</div>
+        <span class="city-tag london">Londres</span> <span class="badge badge-free">GRÁTIS</span>
+      </div>
+    </div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-time">08:00 / 08:45</div>
+        <div class="tl-activity">Acordar / Sair do hotel</div>
+        <div class="metro-box">
+          <div class="route">🚇 Hotel → British Museum</div>
+          <div class="steps">
+            <strong>Earl's Court</strong> → <span class="metro-line piccadilly">Piccadilly</span> dir. Cockfosters → <strong>Holborn</strong> (~15 min)<br>
+            🚶 5 min até o British Museum (Great Russell Street)
+          </div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">10:00 → 13:00</div>
+        <div class="tl-activity">British Museum <span class="badge badge-free">GRÁTIS</span></div>
+        <div class="tl-detail">Pedra de Rosetta, múmias egípcias, Parthenon Marbles, acervo asiático. É ENORME — foquem no que mais interessa. Peguem mapa na entrada!</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">13:00 → 14:00</div>
+        <div class="tl-activity">Almoço</div>
+        <div class="tl-detail">Área de Bloomsbury tem opções boas. Ou Chinatown (a 10 min de metrô).</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">14:30 → 16:30</div>
+        <div class="tl-activity">National Gallery <span class="badge badge-free">GRÁTIS</span></div>
+        <div class="tl-detail">Van Gogh (Girassóis!), Monet, Da Vinci, Turner, Constable. Localização: Trafalgar Square.</div>
+        <div class="metro-box">
+          <div class="route">🚇 British Museum → National Gallery</div>
+          <div class="steps">
+            <strong>Holborn</strong> → <span class="metro-line piccadilly">Piccadilly</span> dir. Heathrow → <strong>Leicester Square</strong> (2 paradas, ~3 min)<br>
+            🚶 5 min até Trafalgar Square / National Gallery
+          </div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">17:30 → 19:00</div>
+        <div class="tl-activity">Caminhada South Bank (Waterloo → London Eye area) <span class="badge badge-free">GRÁTIS</span></div>
+        <div class="tl-detail">De Trafalgar Square, cruzem pela Hungerford Bridge para South Bank. Vista espetacular do Parlamento + London Eye. Street food, artistas de rua.</div>
+      </div>
+    </div>
+    <div class="tip"><strong>💡 Dia econômico!</strong> Tudo gratuito. Gastem só com comida e transporte. Perfeito depois dos dias intensos!</div>
+  </div>
+</div>
+
+<!-- DIA 13: 22/04 -->
+<div class="day" data-search="tate modern millennium bridge st pauls cathedral greenwich observatory">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left">
+      <span class="date-badge london">Qua 22</span>
+      <div>
+        <div class="title">Tate Modern + St Paul's + Greenwich (opc.) ⛪</div>
+        <span class="city-tag london">Londres</span> <span class="badge badge-buy">❌ St Paul's</span>
+      </div>
+    </div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-time">08:00 / 08:45</div>
+        <div class="tl-activity">Acordar / Sair do hotel</div>
+        <div class="metro-box">
+          <div class="route">🚇 Hotel → Tate Modern</div>
+          <div class="steps">
+            <strong>Earl's Court</strong> → <span class="metro-line district">District</span> dir. Upminster → <strong>Blackfriars</strong> (~15 min)<br>
+            🚶 8 min pela margem do Tâmisa até Tate Modern
+          </div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">10:00 → 12:00</div>
+        <div class="tl-activity">Tate Modern <span class="badge badge-free">GRÁTIS</span></div>
+        <div class="tl-detail">Arte contemporânea: Picasso, Dalí, Warhol, Rothko. Turbine Hall é impressionante. Vista grátis do 10º andar!</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">12:00 → 12:30</div>
+        <div class="tl-activity">Millennium Bridge (a pé) <span class="badge badge-free">GRÁTIS</span></div>
+        <div class="tl-detail">A ponte do Harry Potter! Conecta Tate Modern → St Paul's. Vista fotogênica incrível.</div>
+      </div>
+      <div class="tl-item buy">
+        <div class="tl-time">13:00 → 15:00</div>
+        <div class="tl-activity">St Paul's Cathedral ⛪ <span class="badge badge-buy">❌ COMPRAR</span></div>
+        <div class="tl-detail">~£23/adulto, ~£10 youth (6-17). A cúpula vale MUITO a subida (528 degraus) — vista panorâmica 360°!<br>
+        <a href="https://www.stpauls.co.uk" target="_blank">🔗 stpauls.co.uk</a></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">15:00 → 16:30</div>
+        <div class="tl-activity">Pausa / descanso / compras last-minute</div>
+        <div class="tl-detail">Último dia cheio! Se quiserem compras: Oxford Street (<span class="metro-line central">Central</span> de St Paul's → Oxford Circus, ~8 min).</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">16:30 → 19:30</div>
+        <div class="tl-activity">Greenwich (Observatório + Parque) <span class="badge badge-optional">⚡ OPCIONAL</span></div>
+        <div class="tl-detail">~£18/adulto, Ana ~£9 (youth). Meridiano de Greenwich (foto no "marco zero"!), vista linda de Londres do parque.<br>
+        <a href="https://www.rmg.co.uk" target="_blank">🔗 rmg.co.uk</a></div>
+        <div class="metro-box">
+          <div class="route">🚇 St Paul's → Greenwich</div>
+          <div class="steps">
+            <strong>St Paul's</strong> → <span class="metro-line central">Central</span> dir. Epping → <strong>Bank</strong> (1 parada)<br>
+            Baldeação → <span class="metro-line dlr">DLR</span> dir. Lewisham → <strong>Cutty Sark</strong> (~15 min)<br>
+            🚶 10 min subindo pelo Greenwich Park até o Observatório
+          </div>
+        </div>
+        <div class="tip"><strong>💡 Decisão Greenwich:</strong> Só vão se o grupo estiver com energia! É bonito mas cansativo (morro + distância). Se estiverem exaustos, fiquem em South Kensington (perto do hotel): Victoria and Albert Museum é GRÁTIS e incrível.</div>
+      </div>
+    </div>
+    <div class="tip"><strong>💡 Última noite!</strong> Jantem em algum lugar especial. Sugestões: Dishoom (indiano top, Covent Garden), The Ivy (clássico britânico), ou um pub tradicional no caminho do hotel.</div>
+  </div>
+</div>
+
+<!-- DIA 14: 23/04 -->
+<div class="day" data-search="heathrow aeroporto voo volta checkout piccadilly">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left">
+      <span class="date-badge london">Qui 23</span>
+      <div>
+        <div class="title">Volta para casa ✈️</div>
+        <span class="city-tag london">Londres → Heathrow</span>
+      </div>
+    </div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-time">10:00</div>
+        <div class="tl-activity">Acordar (sem pressa!)</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">11:30</div>
+        <div class="tl-activity">Check-out hotel + sair</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">12:00 → 13:15</div>
+        <div class="tl-activity">Metrô para Heathrow</div>
+        <div class="metro-box">
+          <div class="route">🚇 Hotel → Heathrow (DIRETO, sem baldeação!)</div>
+          <div class="steps">
+            <strong>Earl's Court</strong> → <span class="metro-line piccadilly">Piccadilly</span> dir. Heathrow → <strong>Heathrow Terminals</strong> (~45 min)<br>
+            ⚠️ Confiram qual terminal! Linha Piccadilly vai para T2/3 e T4 (ramais diferentes) e T5.<br>
+            💰 ~£5.60/pessoa com Oyster
+          </div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">13:15 → 14:00</div>
+        <div class="tl-activity">Chegada Heathrow + check-in + segurança</div>
+        <div class="tl-detail">Meta: estar no aeroporto 2h30 antes do voo (voo às 16:30). Compras duty-free se quiserem.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">16:30</div>
+        <div class="tl-activity">Decolagem ✈️ Boa viagem de volta!</div>
+      </div>
+    </div>
+    <div class="tip"><strong>💡 Último dia:</strong> Devolvam Oyster Cards nas máquinas do metrô para receber o depósito (£7/cartão) de volta! Façam isso em Earl's Court antes de embarcar.</div>
+  </div>
+</div>
+
+</div><!-- end sec-roteiro -->
+
+<!-- ==================== CHECKLIST ==================== -->
+<div class="section" id="sec-checklist">
+<h2 style="margin: 20px 0 16px; color: var(--blue); font-size: 1.3rem;">Checklist — O que falta comprar</h2>
+
+<div style="background: var(--red-bg); border-radius: 10px; padding: 14px; margin-bottom: 16px;">
+  <strong style="color: var(--red);">🔴 URGENTE (esgotam rápido!)</strong>
+</div>
+
+<div style="background: var(--card); border-radius: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.06); margin-bottom: 20px;">
+<ul class="checklist">
+  <li class="priority-high"><div class="check" onclick="this.classList.toggle('done')"></div><div class="item-text"><strong>Torre Eiffel</strong> — 14/04, ~19:30 · ~€17-27/adulto + ~€8-14 youth<br><a class="item-link" href="https://www.toureiffel.paris" target="_blank">🔗 toureiffel.paris</a></div></li>
+  <li class="priority-high"><div class="check" onclick="this.classList.toggle('done')"></div><div class="item-text"><strong>Trem Paris → Annecy</strong> — 15/04, manhã · ~€30-80/pessoa<br><a class="item-link" href="https://www.sncf-connect.com" target="_blank">🔗 sncf-connect.com</a></div></li>
+  <li class="priority-high"><div class="check" onclick="this.classList.toggle('done')"></div><div class="item-text"><strong>Trem Annecy → Paris</strong> — 16/04, ~12:00 · ~€30-80/pessoa<br><a class="item-link" href="https://www.sncf-connect.com" target="_blank">🔗 sncf-connect.com</a></div></li>
+  <li class="priority-high"><div class="check" onclick="this.classList.toggle('done')"></div><div class="item-text"><strong>Catacumbas de Paris</strong> — 13/04, ~16:30 · ~€29/adulto (Ana grátis)<br><a class="item-link" href="https://www.catacombes.paris.fr" target="_blank">🔗 catacombes.paris.fr</a></div></li>
+</ul>
+</div>
+
+<div style="background: var(--orange-bg); border-radius: 10px; padding: 14px; margin-bottom: 16px;">
+  <strong style="color: #D68910;">🟡 COMPRAR COM ANTECEDÊNCIA</strong>
+</div>
+
+<div style="background: var(--card); border-radius: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.06); margin-bottom: 20px;">
+<ul class="checklist">
+  <li class="priority-med"><div class="check" onclick="this.classList.toggle('done')"></div><div class="item-text"><strong>Teatro West End</strong> — 19/04, ~19:30 · £30-100/pessoa<br><a class="item-link" href="https://www.londontheatredirect.com" target="_blank">🔗 londontheatredirect.com</a> · <a class="item-link" href="https://www.todaytix.com" target="_blank">🔗 TodayTix (descontos)</a></div></li>
+  <li class="priority-med"><div class="check" onclick="this.classList.toggle('done')"></div><div class="item-text"><strong>Churchill War Rooms</strong> — 19/04, ~13:30 · ~£27/adulto<br><a class="item-link" href="https://www.iwm.org.uk/visits/churchill-war-rooms" target="_blank">🔗 iwm.org.uk</a></div></li>
+  <li class="priority-med"><div class="check" onclick="this.classList.toggle('done')"></div><div class="item-text"><strong>Cruzeiro no Sena</strong> — 11/04, ~20:30 · ~€16-18/adulto<br><a class="item-link" href="https://www.bateauxparisiens.com" target="_blank">🔗 Bateaux Parisiens</a></div></li>
+  <li class="priority-med"><div class="check" onclick="this.classList.toggle('done')"></div><div class="item-text"><strong>Orangerie</strong> — 12/04, ~16:30 · €12.50/adulto (Ana grátis)<br><a class="item-link" href="https://www.musee-orangerie.fr" target="_blank">🔗 musee-orangerie.fr</a></div></li>
+  <li class="priority-med"><div class="check" onclick="this.classList.toggle('done')"></div><div class="item-text"><strong>Arco do Triunfo</strong> — 12/04, ~19:30 · €13/adulto (Ana grátis)<br><a class="item-link" href="https://www.paris-arc-de-triomphe.fr" target="_blank">🔗 paris-arc-de-triomphe.fr</a></div></li>
+  <li class="priority-med"><div class="check" onclick="this.classList.toggle('done')"></div><div class="item-text"><strong>Ópera Garnier</strong> — 13/04, ~14:00 · ~€14/adulto<br><a class="item-link" href="https://www.operadeparis.fr" target="_blank">🔗 operadeparis.fr</a></div></li>
+  <li class="priority-med"><div class="check" onclick="this.classList.toggle('done')"></div><div class="item-text"><strong>Musée d'Orsay</strong> — 14/04, ~09:30 · €16/adulto (Ana grátis)<br><a class="item-link" href="https://www.musee-orsay.fr" target="_blank">🔗 musee-orsay.fr</a></div></li>
+  <li class="priority-med"><div class="check" onclick="this.classList.toggle('done')"></div><div class="item-text"><strong>Musée Rodin</strong> — 14/04, ~13:30 · €14/adulto (Ana grátis)<br><a class="item-link" href="https://www.musee-rodin.fr" target="_blank">🔗 musee-rodin.fr</a></div></li>
+  <li class="priority-med"><div class="check" onclick="this.classList.toggle('done')"></div><div class="item-text"><strong>St Paul's Cathedral</strong> — 22/04, ~13:00 · ~£23/adulto, ~£10 youth<br><a class="item-link" href="https://www.stpauls.co.uk" target="_blank">🔗 stpauls.co.uk</a></div></li>
+</ul>
+</div>
+
+<div style="background: var(--green-bg); border-radius: 10px; padding: 14px; margin-bottom: 16px;">
+  <strong style="color: var(--green);">🟢 RESERVAR (GRÁTIS)</strong>
+</div>
+
+<div style="background: var(--card); border-radius: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.06); margin-bottom: 20px;">
+<ul class="checklist">
+  <li class="priority-low"><div class="check" onclick="this.classList.toggle('done')"></div><div class="item-text"><strong>Sky Garden</strong> — 20/04, ~15:30 · GRÁTIS (reserva obrigatória!)<br><a class="item-link" href="https://skygarden.london" target="_blank">🔗 skygarden.london</a></div></li>
+</ul>
+</div>
+
+<div style="background: #F4ECF7; border-radius: 10px; padding: 14px; margin-bottom: 16px;">
+  <strong style="color: var(--purple);">🟣 OPCIONAIS (decidir na viagem)</strong>
+</div>
+
+<div style="background: var(--card); border-radius: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.06);">
+<ul class="checklist">
+  <li><div class="check" onclick="this.classList.toggle('done')"></div><div class="item-text"><strong>Westminster Abbey</strong> — 19/04 · ~£27/adulto<br><a class="item-link" href="https://www.westminster-abbey.org" target="_blank">🔗 westminster-abbey.org</a></div></li>
+  <li><div class="check" onclick="this.classList.toggle('done')"></div><div class="item-text"><strong>Greenwich Observatory</strong> — 22/04 · ~£18/adulto<br><a class="item-link" href="https://www.rmg.co.uk" target="_blank">🔗 rmg.co.uk</a></div></li>
+</ul>
+</div>
+</div><!-- end sec-checklist -->
+
+<!-- ==================== TRANSPORTE ==================== -->
+<div class="section" id="sec-transporte">
+<h2 style="margin: 20px 0 16px; color: var(--blue); font-size: 1.3rem;">Guia de Transporte</h2>
+
+<div class="info-grid">
+  <div class="info-card">
+    <h4>🇫🇷 Paris — Metrô</h4>
+    <p>Vocês "moram" na <span class="metro-line m9">Linha 9</span> (Porte de Montreuil). Esta linha é sua melhor amiga — vai até Trocadéro (Eiffel), Franklin Roosevelt (Champs), e conecta com praticamente tudo em Nation.</p>
+  </div>
+  <div class="info-card" style="border-left-color: var(--green);">
+    <h4>Hub: Nation</h4>
+    <p>A 2 paradas do hotel. De Nation vocês pegam: <span class="metro-line m1">1</span> (Louvre, Gare de Lyon, Champs), <span class="metro-line m2">2</span> (Montmartre), <span class="metro-line rera">RER A</span> (Disney!)</p>
+  </div>
+  <div class="info-card" style="border-left-color: var(--red);">
+    <h4>🇬🇧 Londres — Tube</h4>
+    <p>Base: Earl's Court. <span class="metro-line district">District</span> (Westminster, Tower Hill), <span class="metro-line piccadilly">Piccadilly</span> (Covent Garden, Leicester Sq, Heathrow). Usem Oyster ou contactless!</p>
+  </div>
+</div>
+
+<h3 style="margin: 20px 0 10px; color: var(--blue);">Rotas mais usadas de Paris</h3>
+<div style="background: var(--card); border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: 0 1px 4px rgba(0,0,0,.06);">
+  <div class="metro-box">
+    <div class="route">🏨 Hotel → Nation (hub principal) · ~5 min</div>
+    <div class="steps"><span class="metro-line m9">9</span> Porte de Montreuil → Nation (2 paradas)</div>
+  </div>
+  <div class="metro-box">
+    <div class="route">🏨 Hotel → Versailles · ~70 min</div>
+    <div class="steps"><span class="metro-line m9">9</span> → FDR → <span class="metro-line m1">1</span> → Invalides → <span class="metro-line rerc">RER C</span> → Versailles Rive Gauche</div>
+  </div>
+  <div class="metro-box">
+    <div class="route">🏨 Hotel → Île de la Cité (Sainte-Chapelle) · ~25 min</div>
+    <div class="steps"><span class="metro-line m9">9</span> → Strasbourg-St-Denis → <span class="metro-line m4">4</span> → Cité</div>
+  </div>
+  <div class="metro-box">
+    <div class="route">🏨 Hotel → Montmartre · ~25 min</div>
+    <div class="steps"><span class="metro-line m9">9</span> → Strasbourg-St-Denis → <span class="metro-line m4">4</span> → Barbès-Rochechouart + funicular</div>
+  </div>
+  <div class="metro-box">
+    <div class="route">🏨 Hotel → Trocadéro (Torre Eiffel) · ~25 min</div>
+    <div class="steps"><span class="metro-line m9">9</span> Porte de Montreuil → Trocadéro (direto, sem baldeação!)</div>
+  </div>
+  <div class="metro-box">
+    <div class="route">🏨 Hotel → Gare du Nord (Eurostar) · ~20 min</div>
+    <div class="steps"><span class="metro-line m9">9</span> → Strasbourg-St-Denis → <span class="metro-line m4">4</span> → Gare du Nord</div>
+  </div>
+  <div class="metro-box">
+    <div class="route">🏨 Hotel → Gare de Lyon (TGV Annecy) · ~15 min</div>
+    <div class="steps"><span class="metro-line m9">9</span> → Nation → <span class="metro-line m1">1</span> → Gare de Lyon</div>
+  </div>
+  <div class="metro-box">
+    <div class="route">🏨 Hotel → Disneyland · ~50 min</div>
+    <div class="steps"><span class="metro-line m9">9</span> → Nation → <span class="metro-line rera">RER A</span> → Marne-la-Vallée-Chessy (CONFIRME destino no painel!)</div>
+  </div>
+</div>
+
+<h3 style="margin: 20px 0 10px; color: var(--red);">Rotas mais usadas de Londres</h3>
+<div style="background: var(--card); border-radius: 12px; padding: 16px; box-shadow: 0 1px 4px rgba(0,0,0,.06);">
+  <div class="metro-box">
+    <div class="route">🏨 Hotel → Westminster · ~12 min</div>
+    <div class="steps"><span class="metro-line district">District</span> Earl's Court → Westminster (direto!)</div>
+  </div>
+  <div class="metro-box">
+    <div class="route">🏨 Hotel → Tower Hill (Tower of London) · ~20 min</div>
+    <div class="steps"><span class="metro-line district">District</span> Earl's Court → Tower Hill (direto!)</div>
+  </div>
+  <div class="metro-box">
+    <div class="route">🏨 Hotel → Covent Garden / Leicester Sq · ~15 min</div>
+    <div class="steps"><span class="metro-line piccadilly">Piccadilly</span> Earl's Court → Covent Garden ou Leicester Square (direto!)</div>
+  </div>
+  <div class="metro-box">
+    <div class="route">🏨 Hotel → British Museum · ~15 min</div>
+    <div class="steps"><span class="metro-line piccadilly">Piccadilly</span> Earl's Court → Holborn + 5 min a pé</div>
+  </div>
+  <div class="metro-box">
+    <div class="route">🏨 Hotel → Heathrow · ~45 min</div>
+    <div class="steps"><span class="metro-line piccadilly">Piccadilly</span> Earl's Court → Heathrow (direto, sem baldeação! Confirme terminal)</div>
+  </div>
+</div>
+</div><!-- end sec-transporte -->
+
+<!-- ==================== REFERÊNCIAS ==================== -->
+<div class="section" id="sec-refs">
+<h2 style="margin: 20px 0 16px; color: var(--blue); font-size: 1.3rem;">Referências de Reservas</h2>
+
+<div style="background: var(--card); border-radius: 12px; padding: 4px; overflow-x: auto; box-shadow: 0 1px 4px rgba(0,0,0,.06);">
+<table class="ref-table">
+  <tr><th>Reserva</th><th>Referência</th><th>Data</th><th>Detalhes</th></tr>
+  <tr><td><strong>Eurostar</strong></td><td>MYTTTV</td><td>18/04 14:09</td><td>Coach 7, Assentos 43, 44, 81, 82, 86</td></tr>
+  <tr><td><strong>Versailles</strong></td><td>Trans. 195169525</td><td>11/04 09:00</td><td>Entrada A, Pavilhão Dufour, 4 Passeport</td></tr>
+  <tr><td><strong>Louvre</strong></td><td>V26078728323</td><td>12/04 13:00</td><td>Carte PMP, 3 ingressos (⚠️ verificar Cristiane)</td></tr>
+  <tr><td><strong>Sainte-Chapelle</strong></td><td>26088863414...</td><td>12/04</td><td>4 Non-EEA + 1 grátis</td></tr>
+  <tr><td><strong>Disneyland</strong></td><td>App MyDisney</td><td>17/04</td><td>5 guests confirmados</td></tr>
+  <tr><td><strong>Tower of London</strong></td><td>DVOIEV8VU8UIC</td><td>20/04 10:30</td><td>4 adult + 1 youth (16-17) = £166.50</td></tr>
+</table>
+</div>
+
+<h2 style="margin: 30px 0 16px; color: var(--blue); font-size: 1.3rem;">Viajantes & Assentos Eurostar</h2>
+<div style="background: var(--card); border-radius: 12px; padding: 4px; overflow-x: auto; box-shadow: 0 1px 4px rgba(0,0,0,.06);">
+<table class="ref-table">
+  <tr><th>#</th><th>Nome</th><th>Tipo</th><th>Assento Eurostar</th></tr>
+  <tr><td>1</td><td>Luis Marcelo Teixeira</td><td>Adulto</td><td>Coach 7, Seat 43</td></tr>
+  <tr><td>2</td><td>Janaina Martins Pereira</td><td>Adulto</td><td>Coach 7, Seat 44</td></tr>
+  <tr><td>3</td><td>Carlos Eduardo De Sales</td><td>Adulto</td><td>Coach 7, Seat 81</td></tr>
+  <tr><td>4</td><td>Cristiane Vieira da Silva</td><td>Adulto</td><td>Coach 7, Seat 82</td></tr>
+  <tr><td>5</td><td>Ana Flavia Silva</td><td>Youth (17 anos)</td><td>Coach 7, Seat 86</td></tr>
+</table>
+</div>
+
+<h2 style="margin: 30px 0 16px; color: var(--blue); font-size: 1.3rem;">Hotéis</h2>
+<div style="background: var(--card); border-radius: 12px; padding: 4px; overflow-x: auto; box-shadow: 0 1px 4px rgba(0,0,0,.06);">
+<table class="ref-table">
+  <tr><th>Hotel</th><th>Cidade</th><th>Check-in</th><th>Check-out</th><th>Noites</th></tr>
+  <tr><td>Novotel Suites Montreuil Vincennes</td><td>Paris</td><td>10/04</td><td>18/04</td><td>8</td></tr>
+  <tr><td>Privilodges Le Royal</td><td>Annecy</td><td>15/04</td><td>16/04</td><td>1</td></tr>
+  <tr><td>Mowbray Court Hotel (Earl's Court)</td><td>Londres</td><td>18/04</td><td>23/04</td><td>5</td></tr>
+</table>
+</div>
+<h2 style="margin: 30px 0 16px; color: var(--blue); font-size: 1.3rem;">Resumo de Custos (estimativa)</h2>
+<div style="background: var(--card); border-radius: 12px; padding: 4px; overflow-x: auto; box-shadow: 0 1px 4px rgba(0,0,0,.06);">
+<table class="ref-table">
+  <tr><th>Item</th><th>Valor</th><th>Status</th></tr>
+  <tr><td>Eurostar (5 pessoas)</td><td>€950</td><td style="color: var(--green);">✅ Pago</td></tr>
+  <tr><td>Versailles (4 adultos + Ana grátis)</td><td>€140</td><td style="color: var(--green);">✅ Pago</td></tr>
+  <tr><td>Louvre (3 Carte PMP)</td><td>€0</td><td style="color: var(--green);">✅ Pago</td></tr>
+  <tr><td>Sainte-Chapelle (4 adultos + Ana grátis)</td><td>€88</td><td style="color: var(--green);">✅ Pago</td></tr>
+  <tr><td>Disneyland (5 pessoas)</td><td>—</td><td style="color: var(--green);">✅ Pago</td></tr>
+  <tr><td>Tower of London (4 + 1 youth)</td><td>£166.50</td><td style="color: var(--green);">✅ Pago</td></tr>
+  <tr style="background: var(--orange-bg);"><td><strong>Torre Eiffel (estimativa)</strong></td><td>~€108-135</td><td style="color: var(--orange);">❌ Comprar</td></tr>
+  <tr style="background: var(--orange-bg);"><td><strong>TGV Paris↔Annecy (5 pessoas ida+volta)</strong></td><td>~€300-800</td><td style="color: var(--red);">❌ URGENTE</td></tr>
+  <tr style="background: var(--orange-bg);"><td><strong>Catacumbas (4 adultos)</strong></td><td>~€116</td><td style="color: var(--red);">❌ URGENTE</td></tr>
+  <tr><td>Cruzeiro no Sena (~5 pessoas)</td><td>~€70-90</td><td style="color: var(--orange);">❌ Comprar</td></tr>
+  <tr><td>Orsay + Rodin + Orangerie + Arco</td><td>~€230</td><td style="color: var(--orange);">❌ Comprar</td></tr>
+  <tr><td>Ópera Garnier</td><td>~€66</td><td style="color: var(--orange);">❌ Comprar</td></tr>
+  <tr><td>Teatro West End (~5 pessoas)</td><td>~£150-500</td><td style="color: var(--orange);">❌ Comprar</td></tr>
+  <tr><td>Churchill War Rooms</td><td>~£108+</td><td style="color: var(--orange);">❌ Comprar</td></tr>
+  <tr><td>St Paul's Cathedral</td><td>~£102</td><td style="color: var(--orange);">❌ Comprar</td></tr>
+</table>
+</div>
+
+</div><!-- end sec-refs -->
+
+<!-- ==================== DICAS ==================== -->
+<div class="section" id="sec-dicas">
+<h2 style="margin: 20px 0 16px; color: var(--blue); font-size: 1.3rem;">Dicas Práticas</h2>
+
+<div class="day open">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left"><div class="title">💳 Dinheiro & Pagamentos</div></div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div class="tip"><strong>Paris:</strong> Euro (€). Cartão aceito em quase todo lugar. Levem ~€100-200 em espécie para emergências (mercados menores, gorjetas).</div>
+    <div class="tip"><strong>Londres:</strong> Libra esterlina (£). Cartão contactless funciona no metrô! Avisem o banco que vão viajar para não bloquearem o cartão.</div>
+    <div class="tip"><strong>💡 Dica:</strong> Usem o cartão Wise (antigo TransferWise) ou similar para câmbio sem IOF e sem taxa de conversão. Vale muito a pena para 5 pessoas!</div>
+  </div>
+</div>
+
+<div class="day">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left"><div class="title">🔌 Tomadas & Adaptadores</div></div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div class="tip"><strong>França:</strong> Tipo C/E (mesma do Brasil 2 pinos redondos, mas tomada encaixada). Maioria dos carregadores brasileiros funciona, mas levem adaptador por segurança.</div>
+    <div class="tip warning"><strong>Inglaterra:</strong> Tipo G (3 pinos grandes) — TOTALMENTE DIFERENTE! Precisam de adaptador. Comprem antes de viajar ou no aeroporto.</div>
+    <div class="tip"><strong>💡 Sugestão:</strong> Levem 1-2 adaptadores universais + 1 extensão/régua (assim carregam vários devices num adaptador só).</div>
+  </div>
+</div>
+
+<div class="day">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left"><div class="title">📱 Apps Essenciais</div></div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div class="tip"><strong>Citymapper</strong> — Melhor app de transporte público. Funciona em Paris E Londres. Mostra qual metrô pegar, por qual saída sair, tempo real.</div>
+    <div class="tip"><strong>Google Maps</strong> — Offline maps: baixem os mapas de Paris e Londres antes de viajar (Settings → Offline Maps). Funciona sem internet!</div>
+    <div class="tip"><strong>Disneyland Paris</strong> — App oficial para tempos de fila em tempo real, mapa interativo, reservas de restaurante.</div>
+    <div class="tip"><strong>TodayTix</strong> — Ingressos de teatro West End com desconto. Tem loteria por £20!</div>
+    <div class="tip"><strong>Eurostar</strong> — Bilhete digital, acompanhar trem, notificações de plataforma.</div>
+    <div class="tip"><strong>SNCF Connect</strong> — Para os trens Paris-Annecy, bilhete digital.</div>
+  </div>
+</div>
+
+<div class="day">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left"><div class="title">🎟️ Ana Flavia — Gratuidades (menores de 18)</div></div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div class="tip"><strong>PARIS — GRÁTIS para menores de 18 anos (todas nacionalidades):</strong><br>
+    Versailles ✅, Louvre ✅, Sainte-Chapelle ✅, Orangerie, Arco do Triunfo, Musée d'Orsay, Musée Rodin, Catacumbas, Centre Pompidou, Ópera Garnier (preço youth ~€10).</div>
+    <div class="tip"><strong>LONDRES — Desconto Youth (geralmente 11-17 anos):</strong><br>
+    Tower of London ✅ (£18.50 vs £37), St Paul's (~£10 vs £23), Westminster Abbey (~£12 vs £27), Churchill War Rooms (verificar), Greenwich (~£9 vs £18).</div>
+    <div class="tip"><strong>💡 SEMPRE perguntem na bilheteira:</strong> "Is there a youth/under-18 discount?" em Londres. Em Paris: "Tarif jeune / moins de 18 ans?" Levem documento com data de nascimento!</div>
+  </div>
+</div>
+
+<div class="day">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left"><div class="title">🌤️ Clima & O que vestir</div></div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div class="tip"><strong>Abril em Paris:</strong> 8-17°C. Manhãs frescas, tardes agradáveis. Pode chover. Levem: jaqueta corta-vento impermeável, camadas (camiseta + fleece + jaqueta), guarda-chuva compacto.</div>
+    <div class="tip"><strong>Abril em Londres:</strong> 7-15°C. Mais frio e mais chuva que Paris. Mesma estratégia de camadas + impermeável.</div>
+    <div class="tip"><strong>💡 Calçados:</strong> SAPATOS CONFORTÁVEIS são o item mais importante! Vocês vão andar 15-25 mil passos/dia. Não levem sapatos novos — usem os que já estão amaciados.</div>
+  </div>
+</div>
+
+<div class="day">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left"><div class="title">🍽️ Onde Comer (sugestões rápidas)</div></div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div class="tip"><strong>Paris — Econômico:</strong> Boulangeries (padarias — croissant + café ~€5), Crêperies, PAUL, Picard (congelados gourmet para levar pro hotel). Supermercado Monoprix/Franprix para lanches e água.</div>
+    <div class="tip"><strong>Paris — Experiência:</strong> Bistrôs no Marais (3e/4e arrondissement), Le Bouillon Chartier (preços de 1896, sério!), Breizh Café (crêpes top).</div>
+    <div class="tip"><strong>Londres — Econômico:</strong> Borough Market (almoço dia 20!), Dishoom (indiano excelente), Nando's, Pret A Manger, M&S Food.</div>
+    <div class="tip"><strong>Londres — Pub tradicional:</strong> Experimentem Fish & Chips + uma pint! Pubs históricos: Ye Olde Cheshire Cheese, The Lamb and Flag.</div>
+    <div class="tip"><strong>Annecy:</strong> Fondue, raclette, tartiflette — pratos savoyards imperdíveis! Restaurantes na Rue Sainte-Claire e à beira do lago.</div>
+  </div>
+</div>
+
+<div class="day">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left"><div class="title">📞 Emergências & Contatos Úteis</div></div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div class="tip warning"><strong>🚨 Emergências (Europa):</strong> 112 (número único para polícia, bombeiros, ambulância — funciona em toda UE + UK)</div>
+    <div class="tip"><strong>🇫🇷 França:</strong> Polícia: 17 · SAMU (ambulância): 15 · Bombeiros: 18</div>
+    <div class="tip"><strong>🇬🇧 Reino Unido:</strong> Emergência: 999 · Não-urgência: 101</div>
+    <div class="tip"><strong>🇧🇷 Embaixada do Brasil em Paris:</strong> +33 1 45 61 63 00 · 34 Cours Albert 1er, 75008 Paris</div>
+    <div class="tip"><strong>🇧🇷 Embaixada do Brasil em Londres:</strong> +44 20 7659 1550 · 14-16 Cockspur Street, London SW1Y 5BL</div>
+    <div class="tip"><strong>💡 Dica:</strong> Salvem esses números no celular ANTES de viajar. Anotem também em papel — se o celular acabar bateria, vocês têm os contatos.</div>
+  </div>
+</div>
+
+<div class="day">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left"><div class="title">📶 Internet & Chip de Celular</div></div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div class="tip"><strong>Opção 1 — eSIM (mais prático):</strong> Airalo ou Holafly. Comprem online antes de viajar, ativem no aeroporto. Plano Europa 5GB ~US$15, 10GB ~US$25. Funciona em toda UE + UK.</div>
+    <div class="tip"><strong>Opção 2 — Chip físico:</strong> Orange Holiday (vende em tabacarias na França) ou Lebara/Three (UK). ~€20-40 com dados + ligações.</div>
+    <div class="tip"><strong>Opção 3 — Roaming brasileiro:</strong> Mais caro mas prático. Tim e Vivo têm planos ~R$50-100/semana para Europa.</div>
+    <div class="tip"><strong>💡 Dica para 5 pessoas:</strong> Comprem 1-2 chips bons com bastante dados e usem <strong>hotspot/roteamento</strong> para o grupo. Mais econômico que 5 chips.</div>
+  </div>
+</div>
+
+<div class="day">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left"><div class="title">🧳 Checklist de Mala</div></div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div class="tip"><strong>📄 Documentos (ESSENCIAL):</strong> Passaportes válidos (6+ meses), seguro viagem (obrigatório Schengen!), comprovante de hospedagem, passagens de volta, cartões de crédito/débito internacionais, cópias digitais de tudo no email/nuvem.</div>
+    <div class="tip warning"><strong>⚠️ Seguro viagem:</strong> OBRIGATÓRIO para entrar no Espaço Schengen (França). Cobertura mínima €30.000. Contratem antes de viajar!</div>
+    <div class="tip"><strong>🔌 Eletrônicos:</strong> Adaptadores de tomada (tipo G para UK!), carregadores, power bank, fones de ouvido, câmera + SD cards, cabo USB extra.</div>
+    <div class="tip"><strong>👕 Roupas (abril):</strong> Jaqueta impermeável (ESSENCIAL!), fleece/suéter, camisetas, calça jeans/confortável, pijama, roupas íntimas (14 dias!), guarda-chuva compacto.</div>
+    <div class="tip"><strong>👟 Calçados:</strong> 1 tênis/sapato confortável AMACIADO (principal), 1 par reserva (sandália ou sapatênis). Vocês vão andar 15-25km por dia!</div>
+    <div class="tip"><strong>💊 Saúde:</strong> Medicamentos de uso contínuo (com receita em inglês/francês), analgésico, antialérgico, protetor solar, band-aids para bolhas nos pés.</div>
+    <div class="tip"><strong>💡 Dica pro:</strong> Levem 1 sacola dobrável/eco bag na mochila do dia. Útil para compras, souvenirs, e para separar roupas sujas na mala.</div>
+  </div>
+</div>
+
+</div><!-- end sec-dicas -->
+
+</div><!-- end container -->
+
+<script>
+function showSection(name) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById('sec-' + name).classList.add('active');
+  document.querySelectorAll('.nav-tabs button').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleDay(header) {
+  header.parentElement.classList.toggle('open');
+}
+
+function filterDays(query) {
+  const q = query.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  document.querySelectorAll('.day').forEach(day => {
+    const text = (day.textContent + ' ' + (day.dataset.search || '')).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    const match = !q || text.includes(q);
+    day.style.display = match ? '' : 'none';
+    if (match && q.length > 2) day.classList.add('open');
+  });
+}
+
+// Open first day by default
+document.querySelector('.day').classList.add('open');
+</script>
+
+</body>
+</html>
