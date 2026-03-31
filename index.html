@@ -182,6 +182,7 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
     <div class="nav-tabs">
       <button class="active" onclick="showSection('roteiro')">Roteiro</button>
       <button onclick="showSection('checklist')">Checklist</button>
+      <button onclick="showSection('custos')">Custos</button>
       <button onclick="showSection('transporte')">Transporte</button>
       <button onclick="showSection('refs')">Referências</button>
       <button onclick="showSection('dicas')">Dicas</button>
@@ -1213,6 +1214,442 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 </ul>
 </div>
 </div><!-- end sec-checklist -->
+
+<!-- ==================== CUSTOS ==================== -->
+<div class="section" id="sec-custos">
+<h2 style="margin: 20px 0 16px; color: var(--blue); font-size: 1.3rem;">💰 Custos Completos — Transporte & Ingressos</h2>
+
+<!-- RESUMO -->
+<div class="info-grid">
+  <div class="info-card" style="border-left-color: var(--green);">
+    <h4>✅ Já pago</h4>
+    <p><span class="highlight">~€1.178 + £167</span><br>Eurostar, Versailles, Louvre, Sainte-Chapelle, Disney, Tower of London</p>
+  </div>
+  <div class="info-card" style="border-left-color: var(--red);">
+    <h4>❌ URGENTE comprar</h4>
+    <p><span class="highlight">~€650-1.400</span><br>Trens Annecy (ida+volta), Torre Eiffel, Catacumbas</p>
+  </div>
+  <div class="info-card" style="border-left-color: var(--orange);">
+    <h4>❌ Comprar com antecedência</h4>
+    <p><span class="highlight">~€460 + £400-750</span><br>Museus, cruzeiro, ópera, teatro, War Rooms, St Paul's</p>
+  </div>
+</div>
+
+<!-- TRANSPORTE PARIS -->
+<div class="day open">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left"><div class="title">🇫🇷 Transporte em Paris — Tickets & Preços</div></div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div style="overflow-x:auto">
+    <table class="ref-table">
+      <tr><th>Tipo</th><th>Preço</th><th>Notas</th></tr>
+      <tr style="background:#E8F5E9"><td><strong>Navigo Découverte (RECOMENDADO)</strong></td><td>€5 (cartão) + €30.75/semana</td><td>ILIMITADO em todas as zonas (1-5)! Inclui metrô, RER, bus, tram. Cobre CDG, Versailles e Disney. Precisa de <strong>foto 3×4</strong>.</td></tr>
+      <tr><td>Ticket t+ (avulso)</td><td>€2.15</td><td>1 viagem no metrô, bus ou tram (zona 1). Não serve para RER fora de Paris.</td></tr>
+      <tr><td>Navigo Easy (cartão)</td><td>€2 (cartão) + recargas t+</td><td>Cartão recarregável. Carregue t+ tickets. Mais prático que tickets de papel.</td></tr>
+      <tr><td>RER B — CDG → Paris</td><td>€11.45</td><td>Ticket Origine-Destination (ou Navigo!)</td></tr>
+      <tr><td>RoissyBus — CDG → Opéra</td><td>€16.20</td><td>Ônibus direto, ~75 min. Comprar na hora.</td></tr>
+      <tr><td>RER C — Paris → Versailles</td><td>~€4.55 (ida)</td><td>Ou Navigo (incluso!)</td></tr>
+      <tr><td>RER A — Paris → Disney</td><td>~€5 (ida)</td><td>Ou Navigo (incluso!)</td></tr>
+      <tr><td>TGV Paris ↔ Annecy</td><td>€19-90/pessoa (ida)</td><td>OUIGO mais barato (~€19-39). TGV INOUI mais caro (~€40-90). Comprem cedo!</td></tr>
+      <tr><td>Bus</td><td>€2.15 (t+)</td><td>Mesmo ticket que metrô. Ou Navigo.</td></tr>
+      <tr><td>Tram</td><td>€2.15 (t+)</td><td>Mesmo ticket que metrô. Ou Navigo.</td></tr>
+      <tr><td>Vélib' (bicicleta)</td><td>€3/30min ou €5/dia</td><td>Estações por toda Paris. App Vélib'. Bom para passeios pelo Sena!</td></tr>
+      <tr><td>Taxi CDG → Hotel</td><td>~€55-58 (fixo rive droite)</td><td>Preço tabelado. Só táxis oficiais (fila no aeroporto).</td></tr>
+      <tr><td>Uber CDG → Hotel</td><td>~€45-70</td><td>Variável conforme demanda. Às vezes mais barato que táxi.</td></tr>
+      <tr style="background:#FDEDEC"><td><strong>Patinete elétrico (e-scooter)</strong></td><td><strong>❌ PROIBIDO</strong></td><td>Paris <strong>baniu aluguel de patinetes</strong> em setembro 2023 (referendo popular). Lime, Dott, Tier não operam mais. Só patinete próprio.</td></tr>
+    </table>
+    </div>
+    <div class="tip"><strong>💡 Melhor opção:</strong> Navigo Découverte. Para 5 pessoas × 2 semanas = ~€333 total. Cobre TUDO (metrô + RER + bus + tram), incluindo CDG, Versailles e Disney. Economia de ~€170 vs tickets avulsos!</div>
+  </div>
+</div>
+
+<!-- TRANSPORTE ANNECY -->
+<div class="day">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left"><div class="title">🏔️ Transporte em Annecy</div></div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div style="overflow-x:auto">
+    <table class="ref-table">
+      <tr><th>Tipo</th><th>Preço</th><th>Notas</th></tr>
+      <tr style="background:#E8F5E9"><td><strong>A pé (RECOMENDADO)</strong></td><td>GRÁTIS</td><td>Old Town, canais, lago — tudo a 10-15 min a pé do hotel.</td></tr>
+      <tr><td>Bicicleta aluguel</td><td>~€15-25/dia</td><td>Vélonecy ou lojas locais. Boa opção para contornar o lago (~40km volta completa).</td></tr>
+      <tr><td>Patinete elétrico</td><td>~€1 + €0.15/min</td><td>Disponível em Annecy (diferente de Paris!). Apps: Lime, Dott.</td></tr>
+      <tr><td>Bus SIBRA</td><td>€1.30/viagem</td><td>Rede local. Provavelmente não vão precisar.</td></tr>
+    </table>
+    </div>
+  </div>
+</div>
+
+<!-- TRANSPORTE LONDRES -->
+<div class="day">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left"><div class="title">🇬🇧 Transporte em Londres — Tickets & Preços</div></div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div style="overflow-x:auto">
+    <table class="ref-table">
+      <tr><th>Tipo</th><th>Preço</th><th>Notas</th></tr>
+      <tr style="background:#E8F5E9"><td><strong>Contactless (RECOMENDADO)</strong></td><td>Mesmos preços do Oyster</td><td>Visa/Mastercard encostam no leitor. Cap diário e semanal automático. Mais fácil!</td></tr>
+      <tr><td>Oyster Card</td><td>£7 depósito (reembolsável)</td><td>Cartão recarregável. Mesmos preços. Devolvam no final para receber £7 de volta.</td></tr>
+      <tr><td>Tube (Underground) Z1-2</td><td>~£2.80 (off-peak £2.70)</td><td>Viagem avulsa com Oyster/Contactless</td></tr>
+      <tr><td>Cap diário Z1-2</td><td>£8.10</td><td>Máximo que pagam por dia, mesmo com muitas viagens.</td></tr>
+      <tr><td>Cap semanal Z1-2</td><td>£40.70</td><td>Seg-Dom. Contactless calcula automaticamente!</td></tr>
+      <tr><td>Bus (qualquer distância)</td><td>£1.75</td><td>Preço único. Cap diário bus: £5.25. Pagamento só Oyster/Contactless.</td></tr>
+      <tr><td>DLR (para Greenwich)</td><td>~£2.80</td><td>Mesmo sistema/preço do Tube.</td></tr>
+      <tr><td>Tube Earl's Court → Heathrow</td><td>~£5.60</td><td>Piccadilly line direta. ~45 min.</td></tr>
+      <tr><td>Santander Cycles (bicicleta)</td><td>£1.65/30min</td><td>Estações por toda Londres. App Santander Cycles. Ótimo para Hyde Park!</td></tr>
+      <tr><td>E-scooter (Lime/TIER)</td><td>~£1 + £0.15-0.20/min</td><td>✅ Disponível em Londres! Apps: Lime, TIER. Áreas permitidas específicas. Precisa de CNH.</td></tr>
+      <tr><td>Thames Clipper (barco)</td><td>~£8-10</td><td>Barco pelo Tâmisa. ~30% desconto com Oyster/Contactless. Bonito!</td></tr>
+      <tr><td>Taxi (Black Cab)</td><td>~£10-30 (centro)</td><td>Taxímetro. Gorjeta ~10%.</td></tr>
+      <tr><td>Uber</td><td>~£8-25 (centro)</td><td>Geralmente mais barato que Black Cab.</td></tr>
+    </table>
+    </div>
+    <div class="tip"><strong>💡 Para 5 pessoas, 5 dias:</strong> Contactless é o mais prático. Cap diário ~£8.10 × 5 dias × 5 pessoas = ~£203. Mais Heathrow (~£28). Total transporte Londres: ~£231.</div>
+  </div>
+</div>
+
+<!-- DIA A DIA -->
+<h2 style="margin: 30px 0 16px; color: var(--blue); font-size: 1.3rem;">🎟️ Ingressos por Dia</h2>
+
+<!-- D1 -->
+<div class="day">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left">
+      <span class="date-badge">Sex 10</span>
+      <div><div class="title">Chegada em Paris · Transporte: ~€55-90</div></div>
+    </div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div style="overflow-x:auto">
+    <table class="ref-table">
+      <tr><th>Atividade</th><th>Tipo de Ticket</th><th>Adulto</th><th>Ana (17)</th><th>Total 5p</th></tr>
+      <tr><td>CDG → Hotel (RER B + metrô)</td><td>Ticket Origine-Destination</td><td>€11.45</td><td>€11.45</td><td>~€57</td></tr>
+      <tr><td><em>OU</em> CDG → Hotel (RoissyBus)</td><td>RoissyBus + ticket metrô</td><td>~€18</td><td>~€18</td><td>~€90</td></tr>
+      <tr style="background:#E8F5E9"><td><em>OU</em> Se tiverem Navigo</td><td>Navigo Découverte</td><td>incluso</td><td>incluso</td><td>€0 (extra)</td></tr>
+    </table>
+    </div>
+  </div>
+</div>
+
+<!-- D2 -->
+<div class="day">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left">
+      <span class="date-badge">Sáb 11</span>
+      <div><div class="title">Versailles + Cruzeiro · ~€78 a comprar</div></div>
+    </div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div style="overflow-x:auto">
+    <table class="ref-table">
+      <tr><th>Atividade</th><th>Tipo de Ticket</th><th>Adulto</th><th>Ana (17)</th><th>Total 5p</th></tr>
+      <tr style="background:#E8F5E9"><td>Versailles</td><td>Billet Passeport (palácio + jardins + Trianon)</td><td>€35</td><td>GRÁTIS (&lt;18)</td><td>€140 ✅ Pago</td></tr>
+      <tr style="background:#FEF9E7"><td>Cruzeiro Sena — Bateaux Parisiens</td><td>Croisière Promenade (1h)</td><td>~€17</td><td>~€10 youth</td><td>~€78 ❌</td></tr>
+      <tr><td><em>OU</em> Cruzeiro — Vedettes du Pont Neuf</td><td>Croisière Commentée (1h)</td><td>~€15</td><td>~€8</td><td>~€68 ❌</td></tr>
+      <tr><td>Transporte (com Navigo)</td><td>Navigo inclui RER C Versailles</td><td>incluso</td><td>incluso</td><td>€0</td></tr>
+    </table>
+    </div>
+  </div>
+</div>
+
+<!-- D3 -->
+<div class="day">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left">
+      <span class="date-badge">Dom 12</span>
+      <div><div class="title">Sainte-Chapelle + Louvre + Orangerie + Arco · ~€102 a comprar</div></div>
+    </div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div style="overflow-x:auto">
+    <table class="ref-table">
+      <tr><th>Atividade</th><th>Tipo de Ticket</th><th>Adulto</th><th>Ana (17)</th><th>Total 5p</th></tr>
+      <tr style="background:#E8F5E9"><td>Sainte-Chapelle</td><td>Billet plein tarif</td><td>€22</td><td>GRÁTIS (&lt;18)</td><td>€88 ✅ Pago</td></tr>
+      <tr><td>Notre-Dame (exterior)</td><td>—</td><td>GRÁTIS</td><td>GRÁTIS</td><td>€0</td></tr>
+      <tr style="background:#E8F5E9"><td>Louvre</td><td>Carte PMP (entrada prioritária)</td><td>€0 (PMP)</td><td>GRÁTIS (&lt;18)</td><td>€0 ✅ Pago</td></tr>
+      <tr><td><em>Louvre sem PMP</em></td><td>Billet horodaté (normal)</td><td>€22</td><td>GRÁTIS (&lt;18)</td><td>€88</td></tr>
+      <tr style="background:#FEF9E7"><td>Orangerie</td><td>Billet d'entrée</td><td>€12.50</td><td>GRÁTIS (&lt;18)</td><td>€50 ❌</td></tr>
+      <tr style="background:#FEF9E7"><td>Arco do Triunfo</td><td>Billet d'accès au sommet</td><td>€13</td><td>GRÁTIS (&lt;18)</td><td>€52 ❌</td></tr>
+    </table>
+    </div>
+  </div>
+</div>
+
+<!-- D4 -->
+<div class="day">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left">
+      <span class="date-badge">Seg 13</span>
+      <div><div class="title">Montmartre + Ópera + Pompidou + Marais · ~€66 a comprar</div></div>
+    </div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div style="overflow-x:auto">
+    <table class="ref-table">
+      <tr><th>Atividade</th><th>Tipo de Ticket</th><th>Adulto</th><th>Ana (17)</th><th>Total 5p</th></tr>
+      <tr><td>Sacré-Cœur (basílica)</td><td>—</td><td>GRÁTIS</td><td>GRÁTIS</td><td>€0</td></tr>
+      <tr><td>Sacré-Cœur (cúpula)</td><td>Accès au dôme</td><td>~€7</td><td>~€7</td><td>~€35 ⚡ Opc.</td></tr>
+      <tr style="background:#FEF9E7"><td>Ópera Garnier</td><td>Visite autonome</td><td>€14</td><td>~€10 (youth)</td><td>~€66 ❌</td></tr>
+      <tr><td>Galeries Lafayette</td><td>—</td><td>GRÁTIS</td><td>GRÁTIS</td><td>€0</td></tr>
+      <tr><td>Centre Pompidou (terraço)</td><td>—</td><td>GRÁTIS</td><td>GRÁTIS</td><td>€0</td></tr>
+      <tr><td>Centre Pompidou (museu)</td><td>Billet musée + expos</td><td>€15</td><td>GRÁTIS (&lt;18)</td><td>€60 ⚡ Opc.</td></tr>
+      <tr><td>Le Marais (passeio)</td><td>—</td><td>GRÁTIS</td><td>GRÁTIS</td><td>€0</td></tr>
+    </table>
+    </div>
+  </div>
+</div>
+
+<!-- D5 -->
+<div class="day">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left">
+      <span class="date-badge">Ter 14</span>
+      <div><div class="title">Orsay + Rodin + Torre Eiffel · ~€197-243 a comprar</div></div>
+    </div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div style="overflow-x:auto">
+    <table class="ref-table">
+      <tr><th>Atividade</th><th>Tipo de Ticket</th><th>Adulto</th><th>Ana (17)</th><th>Total 5p</th></tr>
+      <tr style="background:#FEF9E7"><td>Musée d'Orsay</td><td>Billet d'entrée</td><td>€16</td><td>GRÁTIS (&lt;18)</td><td>€64 ❌</td></tr>
+      <tr style="background:#FEF9E7"><td>Musée Rodin</td><td>Billet collection + jardin</td><td>€14</td><td>GRÁTIS (&lt;18)</td><td>€56 ❌</td></tr>
+      <tr><td>Invalides (exterior)</td><td>—</td><td>GRÁTIS</td><td>GRÁTIS</td><td>€0</td></tr>
+      <tr><td>Invalides (tumba Napoleão)</td><td>Billet Musée de l'Armée</td><td>€15</td><td>GRÁTIS (&lt;18)</td><td>€60 ⚡ Opc.</td></tr>
+      <tr style="background:#FDEDEC"><td>Torre Eiffel — 2º andar (elevador)</td><td>Ascenseur 2ème étage</td><td>€17.10</td><td>€8.60 (12-17)</td><td>~€77 ❌ URG</td></tr>
+      <tr style="background:#FDEDEC"><td>Torre Eiffel — Topo (elevador)</td><td>Ascenseur sommet</td><td>€27.30</td><td>€13.70 (12-17)</td><td>~€123 ❌ URG</td></tr>
+      <tr><td>Torre Eiffel — 2º andar (escadas)</td><td>Escalier 2ème étage</td><td>€11.30</td><td>€5.70 (12-17)</td><td>~€51 ❌ URG</td></tr>
+    </table>
+    </div>
+    <div class="tip"><strong>💡 Torre Eiffel:</strong> Topo (sommet) é a experiência completa, mas escadas até o 2º andar são mais baratas e sem fila! Podem subir de escadas e depois pegar elevador para o topo.</div>
+  </div>
+</div>
+
+<!-- D6 -->
+<div class="day">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left">
+      <span class="date-badge annecy">Qua 15</span>
+      <div><div class="title">Paris → Annecy · ~€95-450 (trem)</div></div>
+    </div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div style="overflow-x:auto">
+    <table class="ref-table">
+      <tr><th>Atividade</th><th>Tipo de Ticket</th><th>Adulto</th><th>Ana (17)</th><th>Total 5p</th></tr>
+      <tr style="background:#FDEDEC"><td>TGV Paris → Annecy (OUIGO)</td><td>OUIGO Classique</td><td>€19-39</td><td>€19-39</td><td>€95-195 ❌ URG</td></tr>
+      <tr style="background:#FDEDEC"><td>TGV Paris → Annecy (TGV INOUI)</td><td>2ª Classe</td><td>€40-90</td><td>€40-90</td><td>€200-450 ❌ URG</td></tr>
+      <tr><td>Old Town + canais + lago</td><td>—</td><td>GRÁTIS</td><td>GRÁTIS</td><td>€0</td></tr>
+    </table>
+    </div>
+    <div class="tip"><strong>💡 OUIGO vs INOUI:</strong> OUIGO é low-cost da SNCF — sem tomada, pouca bagagem, mas MUITO mais barato. INOUI tem mais conforto. Comprem o mais cedo possível — preço sobe muito!</div>
+  </div>
+</div>
+
+<!-- D7 -->
+<div class="day">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left">
+      <span class="date-badge annecy">Qui 16</span>
+      <div><div class="title">Annecy → Paris + Catacumbas · ~€211-566</div></div>
+    </div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div style="overflow-x:auto">
+    <table class="ref-table">
+      <tr><th>Atividade</th><th>Tipo de Ticket</th><th>Adulto</th><th>Ana (17)</th><th>Total 5p</th></tr>
+      <tr style="background:#FDEDEC"><td>TGV Annecy → Paris (OUIGO)</td><td>OUIGO Classique</td><td>€19-39</td><td>€19-39</td><td>€95-195 ❌ URG</td></tr>
+      <tr style="background:#FDEDEC"><td>TGV Annecy → Paris (TGV INOUI)</td><td>2ª Classe</td><td>€40-90</td><td>€40-90</td><td>€200-450 ❌ URG</td></tr>
+      <tr style="background:#FDEDEC"><td>Catacumbas de Paris</td><td>Billet d'entrée</td><td>€29</td><td>GRÁTIS (&lt;18)</td><td>€116 ❌ URG</td></tr>
+      <tr><td>Canal Saint-Martin</td><td>—</td><td>GRÁTIS</td><td>GRÁTIS</td><td>€0</td></tr>
+    </table>
+    </div>
+  </div>
+</div>
+
+<!-- D8 -->
+<div class="day">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left">
+      <span class="date-badge">Sex 17</span>
+      <div><div class="title">Disneyland Paris · ✅ Tudo pago!</div></div>
+    </div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div style="overflow-x:auto">
+    <table class="ref-table">
+      <tr><th>Atividade</th><th>Tipo de Ticket</th><th>Adulto</th><th>Ana (17)</th><th>Total 5p</th></tr>
+      <tr style="background:#E8F5E9"><td>Disneyland Paris</td><td>Billet 1 jour / 1 parc</td><td>—</td><td>—</td><td>✅ Pago</td></tr>
+      <tr><td>Transporte RER A (com Navigo)</td><td>Navigo inclui RER A</td><td>incluso</td><td>incluso</td><td>€0</td></tr>
+    </table>
+    </div>
+  </div>
+</div>
+
+<!-- D9 -->
+<div class="day">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left">
+      <span class="date-badge travel">Sáb 18</span>
+      <div><div class="title">Paris → Londres (Eurostar) · ✅ Pago (€950)</div></div>
+    </div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div style="overflow-x:auto">
+    <table class="ref-table">
+      <tr><th>Atividade</th><th>Tipo de Ticket</th><th>Adulto</th><th>Ana (17)</th><th>Total 5p</th></tr>
+      <tr style="background:#E8F5E9"><td>Eurostar 9035</td><td>Standard</td><td>—</td><td>—</td><td>€950 ✅ Pago</td></tr>
+      <tr><td>Metrô St Pancras → Earl's Court</td><td>Oyster/Contactless</td><td>~£2.80</td><td>~£2.80</td><td>~£14</td></tr>
+    </table>
+    </div>
+  </div>
+</div>
+
+<!-- D10 -->
+<div class="day">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left">
+      <span class="date-badge london">Dom 19</span>
+      <div><div class="title">Westminster + War Rooms + West End · ~£272-622</div></div>
+    </div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div style="overflow-x:auto">
+    <table class="ref-table">
+      <tr><th>Atividade</th><th>Tipo de Ticket</th><th>Adulto</th><th>Ana (17)</th><th>Total 5p</th></tr>
+      <tr><td>Westminster / Big Ben (exterior)</td><td>—</td><td>GRÁTIS</td><td>GRÁTIS</td><td>£0</td></tr>
+      <tr><td>Westminster Abbey</td><td>Standard Admission</td><td>£27</td><td>£12 (11-17)</td><td>~£120 ⚡ Opc.</td></tr>
+      <tr style="background:#FEF9E7"><td>Churchill War Rooms</td><td>Standard Entry (audioguia incluso)</td><td>£27</td><td>~£13.50</td><td>~£122 ❌</td></tr>
+      <tr><td>St James's Park + Buckingham</td><td>—</td><td>GRÁTIS</td><td>GRÁTIS</td><td>£0</td></tr>
+      <tr style="background:#FEF9E7"><td>Teatro West End (preço médio)</td><td>Stalls / Dress Circle</td><td>£50-80</td><td>£50-80</td><td>£250-400 ❌</td></tr>
+      <tr><td>Teatro West End (loteria TodayTix)</td><td>Rush / Lottery</td><td>£20-25</td><td>£20-25</td><td>£100-125 ❌</td></tr>
+    </table>
+    </div>
+    <div class="tip"><strong>💡 TodayTix app:</strong> Muitos shows têm loteria diária por £20-25/ingresso. Baixem o app e tentem a sorte — economia enorme!</div>
+  </div>
+</div>
+
+<!-- D11 -->
+<div class="day">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left">
+      <span class="date-badge london">Seg 20</span>
+      <div><div class="title">Tower + Borough + Sky Garden · ✅ Tower pago</div></div>
+    </div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div style="overflow-x:auto">
+    <table class="ref-table">
+      <tr><th>Atividade</th><th>Tipo de Ticket</th><th>Adulto</th><th>Ana (17)</th><th>Total 5p</th></tr>
+      <tr style="background:#E8F5E9"><td>Tower of London</td><td>Standard Admission</td><td>£37</td><td>£18.50 (16-17)</td><td>£166.50 ✅ Pago</td></tr>
+      <tr><td>Borough Market</td><td>—</td><td>GRÁTIS</td><td>GRÁTIS</td><td>£0</td></tr>
+      <tr style="background:#FEF9E7"><td>Sky Garden</td><td>Free Booking (reserva obrigatória)</td><td>GRÁTIS</td><td>GRÁTIS</td><td>£0 ❌ Reservar</td></tr>
+    </table>
+    </div>
+  </div>
+</div>
+
+<!-- D12 -->
+<div class="day">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left">
+      <span class="date-badge london">Ter 21</span>
+      <div><div class="title">British Museum + National Gallery · 100% GRÁTIS!</div></div>
+    </div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div style="overflow-x:auto">
+    <table class="ref-table">
+      <tr><th>Atividade</th><th>Tipo de Ticket</th><th>Adulto</th><th>Ana (17)</th><th>Total 5p</th></tr>
+      <tr><td>British Museum</td><td>—</td><td>GRÁTIS</td><td>GRÁTIS</td><td>£0</td></tr>
+      <tr><td>National Gallery</td><td>—</td><td>GRÁTIS</td><td>GRÁTIS</td><td>£0</td></tr>
+      <tr><td>South Bank (caminhada)</td><td>—</td><td>GRÁTIS</td><td>GRÁTIS</td><td>£0</td></tr>
+    </table>
+    </div>
+    <div class="tip"><strong>💡 Dia econômico!</strong> Tudo grátis. Gastem só com comida e transporte.</div>
+  </div>
+</div>
+
+<!-- D13 -->
+<div class="day">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left">
+      <span class="date-badge london">Qua 22</span>
+      <div><div class="title">Tate + St Paul's + Greenwich · ~£102-183</div></div>
+    </div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div style="overflow-x:auto">
+    <table class="ref-table">
+      <tr><th>Atividade</th><th>Tipo de Ticket</th><th>Adulto</th><th>Ana (17)</th><th>Total 5p</th></tr>
+      <tr><td>Tate Modern</td><td>—</td><td>GRÁTIS</td><td>GRÁTIS</td><td>£0</td></tr>
+      <tr><td>Millennium Bridge</td><td>—</td><td>GRÁTIS</td><td>GRÁTIS</td><td>£0</td></tr>
+      <tr style="background:#FEF9E7"><td>St Paul's Cathedral</td><td>Standard Admission</td><td>£23</td><td>£10 (6-17)</td><td>~£102 ❌</td></tr>
+      <tr><td>Greenwich Observatory</td><td>Standard Entry</td><td>£18</td><td>£18 (16+)</td><td>~£90 ⚡ Opc.</td></tr>
+    </table>
+    </div>
+  </div>
+</div>
+
+<!-- D14 -->
+<div class="day">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="left">
+      <span class="date-badge london">Qui 23</span>
+      <div><div class="title">Volta — Heathrow · ~£28</div></div>
+    </div>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="day-body">
+    <div style="overflow-x:auto">
+    <table class="ref-table">
+      <tr><th>Atividade</th><th>Tipo de Ticket</th><th>Adulto</th><th>Ana (17)</th><th>Total 5p</th></tr>
+      <tr><td>Metrô Earl's Court → Heathrow</td><td>Oyster/Contactless (Piccadilly line)</td><td>~£5.60</td><td>~£5.60</td><td>~£28</td></tr>
+      <tr><td>Devolução Oyster Cards</td><td>Reembolso depósito</td><td>+£7</td><td>+£7</td><td>+£35 💰</td></tr>
+    </table>
+    </div>
+  </div>
+</div>
+
+<!-- TOTAL GERAL -->
+<h2 style="margin: 30px 0 16px; color: var(--blue); font-size: 1.3rem;">📊 Estimativa Total da Viagem (5 pessoas)</h2>
+<div style="background: var(--card); border-radius: 12px; padding: 4px; overflow-x: auto; box-shadow: 0 1px 4px rgba(0,0,0,.06);">
+<table class="ref-table">
+  <tr><th>Categoria</th><th>Euros (€)</th><th>Libras (£)</th><th>Status</th></tr>
+  <tr style="background:#E8F5E9"><td>Ingressos já pagos</td><td>~€1.178</td><td>~£167</td><td style="color:var(--green)">✅ Pago</td></tr>
+  <tr style="background:#FDEDEC"><td>Trens Annecy (ida+volta, 5 pax)</td><td>€190-900</td><td>—</td><td style="color:var(--red)">❌ URGENTE</td></tr>
+  <tr style="background:#FDEDEC"><td>Torre Eiffel (topo, 5 pax)</td><td>~€123</td><td>—</td><td style="color:var(--red)">❌ URGENTE</td></tr>
+  <tr style="background:#FDEDEC"><td>Catacumbas (4 adultos)</td><td>€116</td><td>—</td><td style="color:var(--red)">❌ URGENTE</td></tr>
+  <tr style="background:#FEF9E7"><td>Museus Paris (Orsay+Rodin+Orangerie+Arco+Ópera)</td><td>~€288</td><td>—</td><td style="color:var(--orange)">❌ Comprar</td></tr>
+  <tr style="background:#FEF9E7"><td>Cruzeiro no Sena</td><td>~€78</td><td>—</td><td style="color:var(--orange)">❌ Comprar</td></tr>
+  <tr style="background:#FEF9E7"><td>Churchill War Rooms</td><td>—</td><td>~£122</td><td style="color:var(--orange)">❌ Comprar</td></tr>
+  <tr style="background:#FEF9E7"><td>Teatro West End</td><td>—</td><td>£100-400</td><td style="color:var(--orange)">❌ Comprar</td></tr>
+  <tr style="background:#FEF9E7"><td>St Paul's Cathedral</td><td>—</td><td>~£102</td><td style="color:var(--orange)">❌ Comprar</td></tr>
+  <tr><td><strong>Transporte Paris</strong> (Navigo 2 semanas × 5)</td><td>~€333</td><td>—</td><td>Comprar lá</td></tr>
+  <tr><td><strong>Transporte Londres</strong> (Contactless 5 dias × 5)</td><td>—</td><td>~£231</td><td>Automático</td></tr>
+  <tr style="background:var(--blue-light)"><td><strong>TOTAL ESTIMADO</strong></td><td><strong>€2.300-3.000</strong></td><td><strong>£720-1.020</strong></td><td></td></tr>
+</table>
+</div>
+<div class="tip"><strong>💡 Dica final:</strong> Os valores são estimativas baseadas em preços de 2025. Verifiquem nos sites oficiais antes de comprar. Quanto antes comprarem os itens URGENTES, mais baratos serão (especialmente trens Annecy)!</div>
+
+</div><!-- end sec-custos -->
 
 <!-- ==================== TRANSPORTE ==================== -->
 <div class="section" id="sec-transporte">
