@@ -172,6 +172,16 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 .transport-info li { margin-bottom: 4px; }
 
 @media print { .action-bar, .search-bar, .nav-tabs { display: none; } .section { display: block !important; } .day-body { display: block !important; } }
+
+/* TICKET PER DAY (CSS-only, no JS needed) */
+.day[data-ticket-jour] .day-body::before,
+.day[data-ticket-semaine] .day-body::before,
+.day[data-ticket-contactless] .day-body::before {
+  display: block; padding: 10px 14px; border-radius: 0 8px 8px 0; margin: 0 0 14px; font-size: .85rem; font-weight: 500; color: #2C3E50; white-space: pre-wrap;
+}
+.day[data-ticket-jour] .day-body::before { content: attr(data-ticket-jour); background: #EBF5FB; border-left: 3px solid #2E75B6; }
+.day[data-ticket-semaine] .day-body::before { content: attr(data-ticket-semaine); background: #E8F5E9; border-left: 3px solid #27AE60; }
+.day[data-ticket-contactless] .day-body::before { content: attr(data-ticket-contactless); background: #FDEDEC; border-left: 3px solid #E74C3C; }
 </style>
 </head>
 <body>
@@ -247,7 +257,7 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 </div>
 
 <!-- DIA 1: 10/04 -->
-<div class="day" data-search="chegada cdg paris hotel novotel roissybus rer">
+<div class="day" data-search="chegada cdg paris hotel novotel roissybus rer" data-ticket-jour="🎫 Navigo Jour — €8.45/pessoa · 5 pax = €42.25 · Comprem Navigo Découverte (€5, precisa foto 3x4) + Jour no guichê RER B do CDG">
   <div class="day-header" onclick="toggleDay(this)">
     <div class="left">
       <span class="date-badge">Sex 10</span>
@@ -304,7 +314,7 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 </div>
 
 <!-- DIA 2: 11/04 -->
-<div class="day" data-search="versailles palacio jardins trianon cruzeiro sena bateaux">
+<div class="day" data-search="versailles palacio jardins trianon cruzeiro sena bateaux" data-ticket-jour="🎫 Navigo Jour — €8.45/pessoa · 5 pax = €42.25 · Cobre M9 + M1 + RER C Versailles ida/volta + M9 noite">
   <div class="day-header" onclick="toggleDay(this)">
     <div class="left">
       <span class="date-badge">Sáb 11</span>
@@ -381,7 +391,7 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 </div>
 
 <!-- DIA 3: 12/04 -->
-<div class="day" data-search="sainte chapelle notre dame louvre orangerie arco triunfo champs elysees tuileries">
+<div class="day" data-search="sainte chapelle notre dame louvre orangerie arco triunfo champs elysees tuileries" data-ticket-jour="🎫 Navigo Jour — €8.45/pessoa · 5 pax = €42.25 · Último dia Semana 1. Cobre M9 + M4 + M1">
   <div class="day-header" onclick="toggleDay(this)">
     <div class="left">
       <span class="date-badge">Dom 12</span>
@@ -460,7 +470,7 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 </div>
 
 <!-- DIA 4: 13/04 -->
-<div class="day" data-search="montmartre sacre coeur opera garnier marais pompidou beaubourg galeries lafayette">
+<div class="day" data-search="montmartre sacre coeur opera garnier marais pompidou beaubourg galeries lafayette" data-ticket-semaine="🎫 Navigo Semaine — €30.75/pessoa (Seg→Sáb!) · 5 pax = €153.75 · CARREGUEM HOJE no Découverte! Válido até Sáb 18. Cobre TUDO: metrô + RER + bus.">
   <div class="day-header" onclick="toggleDay(this)">
     <div class="left">
       <span class="date-badge">Seg 13</span>
@@ -538,7 +548,7 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 </div>
 
 <!-- DIA 5: 14/04 -->
-<div class="day" data-search="orsay musee rodin invalides torre eiffel trocadero">
+<div class="day" data-search="orsay musee rodin invalides torre eiffel trocadero" data-ticket-semaine="🎫 Navigo Semaine — já carregado! Toquem o Découverte no leitor. Cobre M9 + M12 + M8 + tudo.">
   <div class="day-header" onclick="toggleDay(this)">
     <div class="left">
       <span class="date-badge">Ter 14</span>
@@ -618,7 +628,7 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 </div>
 
 <!-- DIA 6: 15/04 -->
-<div class="day" data-search="annecy trem sncf gare lyon lago old town">
+<div class="day" data-search="annecy trem sncf gare lyon lago old town" data-ticket-semaine="🎫 Navigo Semaine — metrô até Gare de Lyon incluso. TGV Annecy é SEPARADO (bilhete SNCF).">
   <div class="day-header" onclick="toggleDay(this)">
     <div class="left">
       <span class="date-badge annecy">Qua 15</span>
@@ -680,7 +690,7 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 </div>
 
 <!-- DIA 7: 16/04 -->
-<div class="day" data-search="annecy lago trem volta paris canal saint martin catacumbas catacombes">
+<div class="day" data-search="annecy lago trem volta paris canal saint martin catacumbas catacombes" data-ticket-semaine="🎫 Navigo Semaine — metrô incluso (hotel→Catacumbas→Canal St-Martin→hotel). TGV é separado.">
   <div class="day-header" onclick="toggleDay(this)">
     <div class="left">
       <span class="date-badge annecy">Qui 16</span>
@@ -748,7 +758,7 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 </div>
 
 <!-- DIA 8: 17/04 -->
-<div class="day" data-search="disneyland disney paris marne vallee rer chessy">
+<div class="day" data-search="disneyland disney paris marne vallee rer chessy" data-ticket-semaine="🎫 Navigo Semaine — RER A até Disney INCLUSO! Avulso seria ~€10/pessoa. Economia de €50!">
   <div class="day-header" onclick="toggleDay(this)">
     <div class="left">
       <span class="date-badge">Sex 17</span>
@@ -789,7 +799,7 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 </div>
 
 <!-- DIA 9: 18/04 - EUROSTAR -->
-<div class="day" data-search="eurostar gare nord london st pancras earls court">
+<div class="day" data-search="eurostar gare nord london st pancras earls court" data-ticket-semaine="🎫 Navigo Semaine (último dia!) — metrô até Gare du Nord incluso. Em LONDRES: usem Contactless (Visa/Mastercard) no leitor amarelo.">
   <div class="day-header" onclick="toggleDay(this)">
     <div class="left">
       <span class="date-badge travel">Sáb 18</span>
@@ -857,7 +867,7 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 </div>
 
 <!-- DIA 10: 19/04 -->
-<div class="day" data-search="westminster big ben abbey churchill war rooms buckingham west end teatro theatre">
+<div class="day" data-search="westminster big ben abbey churchill war rooms buckingham west end teatro theatre" data-ticket-contactless="🎫 Contactless — cap diário £8.10/pessoa · 5 pax ≤ £40.50 · Encostem o MESMO cartão Visa/Mastercard no leitor amarelo">
   <div class="day-header" onclick="toggleDay(this)">
     <div class="left">
       <span class="date-badge london">Dom 19</span>
@@ -926,7 +936,7 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 </div>
 
 <!-- DIA 11: 20/04 -->
-<div class="day" data-search="tower london borough market sky garden thames">
+<div class="day" data-search="tower london borough market sky garden thames" data-ticket-contactless="🎫 Contactless — cap diário £8.10/pessoa · District line direto Earl's Court → Tower Hill">
   <div class="day-header" onclick="toggleDay(this)">
     <div class="left">
       <span class="date-badge london">Seg 20</span>
@@ -987,7 +997,7 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 </div>
 
 <!-- DIA 12: 21/04 -->
-<div class="day" data-search="british museum national gallery south bank waterloo gratuito free">
+<div class="day" data-search="british museum national gallery south bank waterloo gratuito free" data-ticket-contactless="🎫 Contactless — cap diário £8.10/pessoa · Dia 100% grátis em atrações — só paguem transporte!">
   <div class="day-header" onclick="toggleDay(this)">
     <div class="left">
       <span class="date-badge london">Ter 21</span>
@@ -1044,7 +1054,7 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 </div>
 
 <!-- DIA 13: 22/04 -->
-<div class="day" data-search="tate modern millennium bridge st pauls cathedral greenwich observatory">
+<div class="day" data-search="tate modern millennium bridge st pauls cathedral greenwich observatory" data-ticket-contactless="🎫 Contactless — cap diário £8.10/pessoa · District + Central + DLR cobertas pelo cap">
   <div class="day-header" onclick="toggleDay(this)">
     <div class="left">
       <span class="date-badge london">Qua 22</span>
@@ -1110,7 +1120,7 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 </div>
 
 <!-- DIA 14: 23/04 -->
-<div class="day" data-search="heathrow aeroporto voo volta checkout piccadilly">
+<div class="day" data-search="heathrow aeroporto voo volta checkout piccadilly" data-ticket-contactless="🎫 Contactless — ~£5.60/pessoa até Heathrow · 5 pax = ~£28 · Devolvam Oyster (se compraram) p/ receber £7 de volta!">
   <div class="day-header" onclick="toggleDay(this)">
     <div class="left">
       <span class="date-badge london">Qui 23</span>
@@ -2262,7 +2272,9 @@ document.querySelector('.day').classList.add('open');
   });
 })();
 
-// Ticket recommendations per day
+// Ticket recommendations - now handled by CSS data-attributes (no JS needed)
+// Route labels - now inline HTML in each .route div (no JS needed)
+/* DISABLED:
 (function() {
   var t = [
     {ticket:'Navigo Jour',pp:'€8.45',t5:'€42.25',
@@ -2351,6 +2363,7 @@ document.querySelector('.day').classList.add('open');
     routes.forEach(function(r, j) { r.innerHTML += (j === 0 ? sem : ctls); });
   }
 })();
+*/
 
 // Print
 function printGuide() { window.print(); }
