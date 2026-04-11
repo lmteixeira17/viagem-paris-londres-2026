@@ -2584,8 +2584,41 @@ function filterDays(query) {
   });
 }
 
-// Open first day by default
-document.querySelector('.day').classList.add('open');
+// Open current day by default (or first day if fora do período da viagem)
+(function() {
+  var now = new Date();
+  var tripStart = new Date('2026-04-10T00:00:00');
+  var tripEnd = new Date('2026-04-23T23:59:59');
+  var opened = false;
+
+  if (now >= tripStart && now <= tripEnd && !window.location.hash) {
+    var todayDay = now.getDate();
+    var days = document.querySelectorAll('#sec-roteiro .day');
+    for (var i = 0; i < days.length; i++) {
+      var badge = days[i].querySelector('.date-badge');
+      if (!badge) continue;
+      var m = badge.textContent.match(/\d+/);
+      if (m && parseInt(m[0], 10) === todayDay) {
+        days[i].classList.add('open');
+        (function(el) {
+          setTimeout(function() {
+            var nav = document.querySelector('.nav');
+            var navH = nav ? nav.offsetHeight : 60;
+            var y = el.getBoundingClientRect().top + window.scrollY - navH - 8;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+          }, 200);
+        })(days[i]);
+        opened = true;
+        break;
+      }
+    }
+  }
+
+  if (!opened) {
+    var first = document.querySelector('.day');
+    if (first) first.classList.add('open');
+  }
+})();
 
 // Countdown
 (function() {
